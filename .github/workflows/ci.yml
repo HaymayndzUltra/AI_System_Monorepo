@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm ci || npm i
+      - name: Validate rules frontmatter
+        run: npm run ci:validate:rules
+      - name: Validate OpenAPI
+        run: npx swagger-cli validate openapi/api-v1.0.yaml
+      - name: Validate PLAN.md required sections
+        run: npm run ci:validate:plan
+      - name: Validate frontmatter schema example
+        run: npx ajv validate -s .artifacts/schemas/frontmatter.schema.json -d .artifacts/templates/frontmatter.example.json
+      - name: Check required docs exist
+        run: |
+          test -f docs/discovery/brief.md
+          test -f docs/discovery/rad.md

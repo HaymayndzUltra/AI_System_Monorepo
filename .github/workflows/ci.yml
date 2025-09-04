@@ -21,3 +21,6 @@ jobs:
         run: |
           test -f docs/discovery/brief.md
           test -f docs/discovery/rad.md
+      - name: Run governance gates
+        run: |
+          python3 .cursor/dev-workflow/ci/run_gates.py | tee gates.log || (cat gates.log; exit 1)

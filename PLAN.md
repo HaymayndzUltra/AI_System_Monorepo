@@ -81,11 +81,7 @@ Based on PRD: `docs/planning/prd.md`
       - `contractsVersion: api-v1.0`
       - `canRunParallel: true`
   - [ ] 2.4.3 Generate per-slice tasks
-<<<<<<< HEAD
-      - Emit `tasks-frontend.md` and `tasks-backend.md` derived from PRD and this PLAN, each carrying the metadata above and explicit I/O (inputs: `docs/planning/prd.md`, `openapi/api-v1.0.yaml`; outputs: code/tests/docs under slice paths, `reports/audit-*.md`, `reports/validation-*.md`).
-=======
       - Emit `tasks-frontend.md` and `tasks-backend.md` derived from PRD and this PLAN, each carrying the metadata above and explicit I/O (inputs: `docs/planning/prd.md`, `openapi/api-v1.0.yaml`; outputs: FE/BE code, tests, docs, `reports/audit-*.md`, `reports/validation-*.md`).
->>>>>>> cursor/analyze-developer-workflow-and-rule-triggers-a3af
   - [ ] 2.4.4 Pin API contract
       - Freeze `openapi/api-v1.0.yaml` for FE consumption. Contract changes bump minor (e.g., `api-v1.1`) and trigger FE re-targeting.
 

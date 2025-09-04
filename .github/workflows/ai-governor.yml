@@ -1,0 +1,180 @@
+name: AI-Governor
+
+on:
+  pull_request:
+  push:
+    branches: [ main, testing ]
+
+permissions:
+  contents: read
+  security-events: write    # for CodeQL / SARIF
+  actions: read
+  id-token: write           # for provenance if you add SLSA later
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  contract:
+    name: gate:contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'pnpm' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm install --frozen-lockfile
+      # Validate OpenAPI/JSON Schema contracts
+      - name: validate-openapi
+        run: |
+          if [ -f contracts/openapi.yaml ]; then
+            npx @redocly/cli@latest lint contracts/openapi.yaml
+          else
+            echo "No contracts/openapi.yaml found, skipping"; fi
+      # Optional: breaking change diff vs base
+      - name: api-diff
+        run: |
+          if [ -f contracts/openapi.yaml ]; then
+            npx openapi-diff@latest \
+              -r ${{ github.event.pull_request.base.sha || 'origin/main' }}:contracts/openapi.yaml \
+              -c contracts/openapi.yaml || true
+            # ↑ set to `|| true` if diff is informational; remove to fail on breaking changes
+          fi
+
+  cursor_rules:
+    name: gate:cursor-rules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: validate .cursorrules.json
+        run: |
+          if [ -f .cursorrules.json ]; then
+            sudo apt-get update -y && sudo apt-get install -y jq
+            jq -e '.policies and (.policies|length>0)' .cursorrules.json >/dev/null
+          else
+            echo "Missing .cursorrules.json"; exit 1; fi
+
+  lint:
+    name: gate:lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'pnpm' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
+
+  typecheck:
+    name: gate:typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'pnpm' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec tsc -p tsconfig.build.json --noEmit
+
+  unit:
+    name: gate:unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'pnpm' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test -- --run
+
+  api_surface:
+    name: gate:api-surface
+    runs-on: ubuntu-latest
+    needs: [typecheck]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'pnpm' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec api-extractor run --local
+
+  docs:
+    name: gate:docs
+    runs-on: ubuntu-latest
+    needs: [typecheck]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'pnpm' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run docs:build
+
+  codeql:
+    name: gate:sec:codeql
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - uses: github/codeql-action/init@v3
+        with: { languages: javascript-typescript }
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/analyze@v3
+
+  secrets:
+    name: gate:sec:secrets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: gitleaks scan
+        uses: zricethezav/gitleaks-action@v2
+        with:
+          args: "--redact --no-git"
+      # If you rely on GitHub’s native secret scanning, keep this as supplemental.
+
+  sbom:
+    name: gate:comp:sbom
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: generate SBOM (CycloneDX)
+        run: |
+          npm i -g @cyclonedx/cyclonedx-npm
+          cyclonedx-npm --output-format json --output-file sbom.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.json
+
+  license:
+    name: gate:license
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          npx license-checker --summary --production || true
+          # remove `|| true` to fail on disallowed licenses
+
+  release_dryrun:
+    name: gate:release-dryrun
+    runs-on: ubuntu-latest
+    needs: [unit, api_surface]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'pnpm' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - name: semantic-release dry run
+        run: npx semantic-release --dry-run

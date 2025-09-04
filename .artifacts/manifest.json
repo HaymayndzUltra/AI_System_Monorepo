@@ -1,0 +1,7 @@
+{
+  "name": "ai-governor-artifacts",
+  "version": 1,
+  "blobs": "./blobs",
+  "manifests": "./manifests",
+  "hash": "sha256"
+}

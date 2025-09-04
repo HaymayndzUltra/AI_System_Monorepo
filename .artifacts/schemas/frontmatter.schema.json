@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Artifact Frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["runId", "version", "status", "timestamp"],
+  "properties": {
+    "runId": {"type": "string"},
+    "version": {"type": "string", "pattern": "^v?\\d+\\.\\d+\\.\\d+$"},
+    "status": {"type": "string", "enum": ["draft", "approved", "archived"]},
+    "timestamp": {"type": "string", "format": "date-time"}
+  }
+}

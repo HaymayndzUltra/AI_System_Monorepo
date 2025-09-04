@@ -32,18 +32,20 @@ Based on PRD: `docs/planning/prd.md`
 
 - [ ] **1.0 Complete F1 Discovery Phase**
 > **Recommended Model:** `Framework Specialist`
-  - [ ] 1.1 **Discovery Brief Completion:**
+  - [ ] 1.1 **Discovery Brief Completion** (outputs → `docs/discovery/brief.md`)
       - [ ] 1.1.1 Finalize problem statement with specific business objectives and technical constraints
       - [ ] 1.1.2 Define target users (developers, PMs, auditors, validators) with their specific needs
-      - [ ] 1.1.3 Establish measurable KPIs with baseline metrics and target improvements
-      - [ ] 1.1.4 Document technical constraints (Cursor integration, Git workflow, CI/CD requirements)
-      - [ ] 1.1.5 Create traceability matrix linking requirements to implementation phases
-  - [ ] 1.2 **RAD (Risks/Assumptions/Dependencies) Document:**
-      - [ ] 1.2.1 Identify and rank technical risks (integration complexity, performance impact, adoption resistance)
-      - [ ] 1.2.2 Document key assumptions about team capabilities, tool compatibility, and stakeholder commitment
-      - [ ] 1.2.3 Map external dependencies (Cursor API, Git hooks, security tools, documentation platforms)
-      - [ ] 1.2.4 Create risk mitigation strategies with contingency plans
-      - [ ] 1.2.5 Establish dependency monitoring and alerting mechanisms
+      - [ ] 1.1.3 Establish measurable KPIs (baseline → target) with measurement sources
+      - [ ] 1.1.4 Document technical constraints (environments, secret manager, release model, CI/CD)
+      - [ ] 1.1.5 Create traceability seeds linking requirements to plan/tasks
+  - [ ] 1.2 **RAD (Risks/Assumptions/Dependencies)** (outputs → `docs/discovery/rad.md`)
+      - [ ] 1.2.1 Identify and rank technical risks (likelihood × impact)
+      - [ ] 1.2.2 Assign mitigations and owners per risk
+      - [ ] 1.2.3 Record assumptions to validate and external dependencies
+      - [ ] 1.2.4 Define monitoring signals and evidence to collect
+  - [ ] 1.3 **F1 Gate (Auditor → Validator)**
+      - [ ] 1.3.1 Trigger sequence: `analyze` → `prd discovery` → `audit discovery @ HEAD` → `validate discovery using {audit}`
+      - [ ] 1.3.2 Acceptance: Validator Decision=GO and no Disagree items; else fix and repeat (max 3 cycles)
 
 - [ ] **2.0 Implement AI-Governor Trigger System**
 > **Recommended Model:** `System Integrator`
@@ -79,7 +81,7 @@ Based on PRD: `docs/planning/prd.md`
       - `contractsVersion: api-v1.0`
       - `canRunParallel: true`
   - [ ] 2.4.3 Generate per-slice tasks
-      - Emit `tasks-frontend.md` and `tasks-backend.md` derived from PRD and this PLAN, each carrying the metadata above and explicit I/O (inputs: `docs/planning/prd.md`, `openapi/api-v1.0.yaml`; outputs: code/tests/docs under slice paths, `reports/audit-*.md`, `reports/validation-*.md`).
+      - Emit `tasks-frontend.md` and `tasks-backend.md` derived from PRD and this PLAN, each carrying the metadata above and explicit I/O (inputs: `docs/planning/prd.md`, `openapi/api-v1.0.yaml`; outputs: FE/BE code, tests, docs, `reports/audit-*.md`, `reports/validation-*.md`).
   - [ ] 2.4.4 Pin API contract
       - Freeze `openapi/api-v1.0.yaml` for FE consumption. Contract changes bump minor (e.g., `api-v1.1`) and trigger FE re-targeting.
 

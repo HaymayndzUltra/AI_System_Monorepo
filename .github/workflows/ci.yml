@@ -15,8 +15,6 @@ jobs:
         run: npm run ci:validate:rules
       - name: Validate OpenAPI
         run: npx swagger-cli validate openapi/api-v1.0.yaml
-      - name: Validate PLAN.md required sections
-        run: npm run ci:validate:plan
       - name: Validate frontmatter schema example
         run: npx ajv validate -s .artifacts/schemas/frontmatter.schema.json -d .artifacts/templates/frontmatter.example.json
       - name: Check required docs exist

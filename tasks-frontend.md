@@ -1,8 +1,14 @@
-- [ ] 0.0 **Frontend Slice**
-  - meta:
-    - parallelGroup: FE
-    - paths: ["src/frontend/**", "design/tokens/**", "docs/design/**"]
-    - contractsVersion: api-v1.0
-    - canRunParallel: true
-  - inputs: docs/planning/prd.md, openapi/api-v1.0.yaml
-  - outputs: src/frontend/**, tests/**, docs/design/**, reports/audit-FE-<sessionId>-<ts>.md, reports/validation-FE-<sessionId>-<ts>.md
+- [ ] 1.0 Develop the "App Shell" (frontend)
+  - [ ] 1.1 File scaffolding under src/frontend/app/**
+  - [ ] 1.2 Integrate design tokens (design/tokens/**)
+  - [ ] 1.3 Add routing and basic layout
+  - [ ] 1.4 Unit tests and README
+
+- [ ] 2.0 Implement "Health Page" consuming API v1.0
+  - [ ] 2.1 Fetch /health and render status
+  - [ ] 2.2 Loading/error states and tests
+  - [ ] 2.3 Accessibility checks
+
+- [ ] 3.0 Documentation
+  - [ ] 3.1 Update docs/design/*-spec.md
+  - [ ] 3.2 Add component usage examples

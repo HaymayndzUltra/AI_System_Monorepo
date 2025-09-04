@@ -1,0 +1,8 @@
+- [ ] 0.0 **Frontend Slice**
+  - meta:
+    - parallelGroup: FE
+    - paths: ["src/frontend/**", "design/tokens/**", "docs/design/**"]
+    - contractsVersion: api-v1.0
+    - canRunParallel: true
+  - inputs: docs/planning/prd.md, openapi/api-v1.0.yaml
+  - outputs: src/frontend/**, tests/**, docs/design/**, reports/audit-FE-<sessionId>-<ts>.md, reports/validation-FE-<sessionId>-<ts>.md

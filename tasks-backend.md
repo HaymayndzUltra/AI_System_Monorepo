@@ -1,0 +1,8 @@
+- [ ] 0.0 **Backend Slice**
+  - meta:
+    - parallelGroup: BE
+    - paths: ["src/backend/**", "services/**", "openapi/**"]
+    - contractsVersion: api-v1.0
+    - canRunParallel: true
+  - inputs: docs/planning/prd.md, openapi/api-v1.0.yaml
+  - outputs: src/backend/**, services/**, tests/**, reports/audit-BE-<sessionId>-<ts>.md, reports/validation-BE-<sessionId>-<ts>.md

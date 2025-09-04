@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: AI Governor API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /health:
+    get:
+      operationId: healthGET
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/_health_get_200_response"
+          description: OK
+      summary: Health check
+      x-eov-operation-handler: controllers/DefaultController
+components:
+  schemas:
+    _health_get_200_response:
+      example:
+        status: ok
+      properties:
+        status:
+          example: ok
+          type: string
+      type: object

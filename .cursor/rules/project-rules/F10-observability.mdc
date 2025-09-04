@@ -1,11 +1,28 @@
 ---
-description: "TAGS: [observability,metrics,tracing,retro] | TRIGGERS: observability,retro | SCOPE: project-rules | DESCRIPTION: Ensures telemetry, SLOs, dashboards, and retrospectives."
+description: "TAGS: [observability,metrics,tracing,retro] | TRIGGERS: f10,observability,retro | SCOPE: project-rules | DESCRIPTION: F10 Observability end-to-end with manifests and digests."
 alwaysApply: false
 ---
-# Project Rule: F10 Observability & Retro
+# Project Rule: F10 Observability & Retro (End-to-End)
+
+## Inputs (In)
+- Running services; agreed SLOs
+
+## Outputs (Out)
+- `frameworks/observability/manifests/<cycle>/handoff_manifest.yaml`
+- `frameworks/observability/digests/<date>-digest.md`
+- `docs/observability/dashboards.md`
 
 ## Protocol
-1. **Telemetry:** structured logs, metrics, traces with correlation IDs.
-2. **SLOs:** defined and monitored; alerts configured.
-3. **Retro:** implementation retrospective documented.
+1. Define SLI/SLOs and capture metrics/trace/logs plan.
+2. Auditor/Validator for evidence and readiness.
+
+## Acceptance
+- Manifests and digests present; SLOs documented.
+
+[STRICT]
+- SLOs MUST have thresholds and alert policies; dashboards MUST be linked.
+- Validation report MUST include links to metrics/trace/log panels.
+
+[GUIDELINE]
+- Prefer correlation IDs across logs/traces/metrics for root-cause speed.
 

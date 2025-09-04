@@ -1,0 +1,28 @@
+---
+description: "TAGS: [backend,e2e,planning,implementation,validation] | TRIGGERS: be,e2e,backend | SCOPE: project-rules | DESCRIPTION: Backend end-to-end rule chaining F1→F2→F4→F6→F7→F8→F9→F10 with explicit I/O and gates."
+alwaysApply: false
+---
+# Project Rule: Backend End-to-End
+
+## Inputs (In)
+- `docs/planning/prd.md`, `PLAN.md`, `openapi/api-v1.0.yaml`
+
+## Outputs (Out)
+- `src/backend/**`, `services/**` stubs, tests, READMEs
+- `reports/audit-backend-HEAD.md`, `reports/validation-BE-<sessionId>-<ts>.md`
+
+## Protocol
+1. Ensure phase prerequisites: F1/2/4 validations are GO for BE scope.
+2. Implement BE per tasks (Focus Mode); maintain tests/docs.
+3. Auditor → Validator per parent task/milestone; proceed only on GO.
+4. Run Security (F8) evidence; then QA/Release/Observability.
+
+## Acceptance
+- All BE tasks complete with passing tests; validations = GO; artifacts present.
+
+[STRICT]
+- BE implementation MUST NOT start until F4 OpenAPI validation is passing.
+- Every parent task MUST pass Auditor→Validator before the next parent task.
+
+[GUIDELINE]
+- Keep endpoints contract-first; generate stubs when helpful.

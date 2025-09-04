@@ -1,11 +1,30 @@
 ---
-description: "TAGS: [implementation,code,tests] | TRIGGERS: implement,process tasks | SCOPE: project-rules | DESCRIPTION: Enforces coding standards and tests during implementation."
+description: "TAGS: [implementation,code,tests] | TRIGGERS: f6,implement,process tasks | SCOPE: project-rules | DESCRIPTION: F6 Implementation end-to-end with FE/BE slice I/O and acceptance."
 alwaysApply: false
 ---
-# Project Rule: F6 Implementation
+# Project Rule: F6 Implementation (End-to-End)
+
+## Inputs (In)
+- BE: `tasks-backend.md`, `openapi/api-v1.0.yaml`
+- FE: `tasks-frontend.md`, `openapi/api-v1.0.yaml`
+
+## Outputs (Out)
+- BE: `src/backend/**`, `services/**` (stubs), tests, `reports/audit-backend-HEAD.md`, `reports/validation-BE-<sessionId>-<ts>.md`
+- FE: `src/frontend/**`, tests/docs, `reports/audit-FE-<sessionId>-<ts>.md`, `reports/validation-FE-<sessionId>-<ts>.md`
 
 ## Protocol
-1. **Standards:** apply code quality and modification safety rules.
-2. **Tests:** unit/integration required for new code; FE/BE slices follow tasks.
-3. **Docs:** update component/service READMEs.
+1. Execute per parent task (Focus Mode). Update task checkboxes.
+2. Maintain tests and READMEs per component/service.
+3. Auditor→Validator after each parent task or milestone.
+
+## Acceptance
+- All subtasks complete with passing tests.
+- Validation = GO; no Disagree items.
+
+[STRICT]
+- Each parent task MUST end with Auditor→Validator GO before moving on.
+- New code MUST include unit/integration tests and updated READMEs.
+
+[GUIDELINE]
+- Keep PRs scoped to one parent task to maintain Focus Mode quality.
 

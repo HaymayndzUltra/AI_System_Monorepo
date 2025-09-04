@@ -8,12 +8,14 @@
     "test": "npm --prefix src/frontend/app run test",
     "test:run": "npm --prefix src/frontend/app run test:run",
     "dev:frontend": "npm --prefix src/frontend/app run dev",
-    "build:frontend": "npm --prefix src/frontend/app run build"
+    "build:frontend": "npm --prefix src/frontend/app run build",
+    "openapi:generate:core": "npx @openapitools/openapi-generator-cli generate -i openapi/api-v1.0.yaml -g nodejs-express-server -o services/core-stub --additional-properties=useES6=true,serverPort=3000"
   },
   "devDependencies": {
     "ajv-cli": "^0.6.0",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
-    "swagger-cli": "^4.0.4"
+    "swagger-cli": "^4.0.4",
+    "@openapitools/openapi-generator-cli": "^2.13.4"
   }
 }

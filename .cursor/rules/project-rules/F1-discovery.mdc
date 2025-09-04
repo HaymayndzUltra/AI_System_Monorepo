@@ -1,11 +1,31 @@
 ---
-description: "TAGS: [discovery,planning,docs] | TRIGGERS: prd discovery,analyze discovery | SCOPE: project-rules | DESCRIPTION: Validates F1 discovery outputs and gates transition to planning."
+description: "TAGS: [discovery,planning,docs] | TRIGGERS: f1,discovery,prd,analyze | SCOPE: project-rules | DESCRIPTION: F1 Discovery end-to-end with explicit Inputs/Outputs/Acceptance and Auditor→Validator gating."
 alwaysApply: false
 ---
-# Project Rule: F1 Discovery
+# Project Rule: F1 Discovery (End-to-End)
+
+## Inputs (In)
+- Stakeholder notes (optional), `docs/planning/prd.md` (draft)
+
+## Outputs (Out)
+- `docs/discovery/brief.md`
+- `docs/discovery/rad.md`
+- `reports/audit-discovery-<sessionId>-<ts>.md`
+- `reports/validation-discovery-<sessionId>-<ts>.md`
 
 ## Protocol
-1. **Outputs required:** `docs/discovery/brief.md`, `docs/discovery/rad.md`.
-2. **Validation:** KPIs have baseline→target; risks have owners and mitigations.
-3. **Gate:** Proceed to F2 only after Auditor → Validator GO with no disagreements.
+1. Complete Brief and RAD with measurable KPIs and assigned mitigations.
+2. Auditor generates audit report (scope, completeness, risks).
+3. Validator issues GO/NO-GO with agreement matrix.
+
+## Acceptance
+- Brief and RAD present and complete.
+- Validation = GO; no Disagree items.
+
+[STRICT]
+- The Auditor → Validator loop MUST complete with Decision=GO before transitioning to F2.
+- KPIs in Brief MUST have baseline→target and measurement sources.
+
+[GUIDELINE]
+- Prefer concise, evidence-linked audits; avoid narrative without references.
 

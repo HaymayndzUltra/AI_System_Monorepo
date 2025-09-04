@@ -1,0 +1,17 @@
+fe:
+  parallelGroup: FE
+  paths:
+    - "src/frontend/**"
+    - "design/tokens/**"
+    - "docs/design/**"
+  contractsVersion: api-v1.0
+  canRunParallel: true
+
+be:
+  parallelGroup: BE
+  paths:
+    - "src/backend/**"
+    - "services/**"
+    - "openapi/**"
+  contractsVersion: api-v1.0
+  canRunParallel: true

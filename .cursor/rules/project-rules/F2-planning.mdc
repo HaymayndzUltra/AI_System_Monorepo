@@ -1,11 +1,33 @@
 ---
-description: "TAGS: [planning,prd,tasks] | TRIGGERS: prd,task generation | SCOPE: project-rules | DESCRIPTION: Ensures PRD completeness and per-slice task generation."
+description: "TAGS: [planning,prd,tasks] | TRIGGERS: f2,planning,prd,task generation | SCOPE: project-rules | DESCRIPTION: F2 Planning end-to-end with Inputs/Outputs/Acceptance and slice metadata."
 alwaysApply: false
 ---
-# Project Rule: F2 Planning
+# Project Rule: F2 Planning (End-to-End)
+
+## Inputs (In)
+- F1 outputs: `docs/discovery/brief.md`, `docs/discovery/rad.md`
+
+## Outputs (Out)
+- `docs/planning/prd.md`
+- `PLAN.md` (updated)
+- `tasks-frontend.md`, `tasks-backend.md`
+- `.cursor/dev-workflow/slices.yaml`
+- `reports/audit-planning-<sessionId>-<ts>.md`
+- `reports/validation-planning-<sessionId>-<ts>.md`
 
 ## Protocol
-1. **Outputs required:** `docs/planning/prd.md`, `tasks-frontend.md`, `tasks-backend.md`.
-2. **PRD completeness:** goals, constraints, APIs in-scope, acceptance criteria.
-3. **Slices:** FE/BE tasks include metadata (parallelGroup, paths, contractsVersion).
+1. Finalize PRD; update PLAN with FE/BE slice plan and contracts.
+2. Generate FE/BE tasks files; define slices.yaml with contractsVersion.
+3. Auditor/Validator loop for GO decision.
+
+## Acceptance
+- PRD complete; tasks and slices present.
+- Validation = GO; no Disagree items.
+
+[STRICT]
+- PRD MUST be approved before tasks execution begins.
+- Slices.yaml MUST declare `contractsVersion` and correct FE/BE paths.
+
+[GUIDELINE]
+- Keep tasks atomic and parent-task focused for Focus Mode execution.
 

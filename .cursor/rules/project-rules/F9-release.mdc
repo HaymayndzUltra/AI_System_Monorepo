@@ -1,11 +1,28 @@
 ---
-description: "TAGS: [release,deployment,rollback] | TRIGGERS: release,deploy | SCOPE: project-rules | DESCRIPTION: Validates release process and rollback readiness."
+description: "TAGS: [release,deployment,rollback] | TRIGGERS: f9,release,deploy | SCOPE: project-rules | DESCRIPTION: F9 Release end-to-end with artifacts and validation."
 alwaysApply: false
 ---
-# Project Rule: F9 Release
+# Project Rule: F9 Release (End-to-End)
+
+## Inputs (In)
+- Validated code and artifacts
+
+## Outputs (Out)
+- `reports/release-notes-<ver>.md`
+- `deploy/**` manifests
+- `reports/validation-release-<ts>.md`
 
 ## Protocol
-1. **Pipelines:** artifact signing, promotion, approvals.
-2. **Strategies:** blue/green or canary; rollback < 5 min.
-3. **Runbooks:** SRE runbooks and checklists present.
+1. Generate notes; verify versioning and changelogs.
+2. Validator GO before production; rollback plan verified.
+
+## Acceptance
+- Notes, manifests, and validation present; rollback ready.
+
+[STRICT]
+- Production deploy MUST be blocked without Validator GO and rollback plan.
+- Release notes MUST list breaking changes and dependency risks.
+
+[GUIDELINE]
+- Prefer progressive delivery (blue/green or canary) with quick rollback.
 

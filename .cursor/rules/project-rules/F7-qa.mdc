@@ -1,11 +1,29 @@
 ---
-description: "TAGS: [qa,testing,coverage] | TRIGGERS: qa,test strategy | SCOPE: project-rules | DESCRIPTION: Validates QA strategy and coverage."
+description: "TAGS: [qa,testing,coverage] | TRIGGERS: f7,qa,test strategy | SCOPE: project-rules | DESCRIPTION: F7 QA end-to-end with Inputs/Outputs/Acceptance."
 alwaysApply: false
 ---
-# Project Rule: F7 QA
+# Project Rule: F7 QA (End-to-End)
+
+## Inputs (In)
+- FE/BE code + tests
+
+## Outputs (Out)
+- `reports/coverage-<slice>-<ts>.{json|md}`
+- `reports/audit-qa-<ts>.md`
+- `reports/validation-qa-<ts>.md`
 
 ## Protocol
-1. **Strategy:** documented test strategy; coverage thresholds.
-2. **Pipelines:** CI executes suites reliably; flakes < 2%.
-3. **Reports:** test reports and trends stored.
+1. Run test suites; collect coverage per slice.
+2. Auditor summarizes QA findings; Validator issues GO/NO‑GO.
+
+## Acceptance
+- Coverage meets thresholds; tests pass.
+- Validation = GO; no Disagree items.
+
+[STRICT]
+- Coverage thresholds MUST be met or waivered with justification.
+- Validation report MUST reference coverage artifacts by path.
+
+[GUIDELINE]
+- Track flaky tests and keep flakes < 2%.
 

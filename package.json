@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "ci:validate:rules": "node scripts/ci/validate-rules.js",
-    "test": "npm --prefix src/frontend/app run test",
-    "test:run": "npm --prefix src/frontend/app run test:run",
-    "dev:frontend": "npm --prefix src/frontend/app run dev",
-    "build:frontend": "npm --prefix src/frontend/app run build",
+    "test": "npm --prefix src/frontend run test",
+    "test:run": "npm --prefix src/frontend run test",
+    "dev:frontend": "npm --prefix src/frontend run dev",
+    "build:frontend": "npm --prefix src/frontend run build",
     "openapi:generate:core": "npx @openapitools/openapi-generator-cli generate -i openapi/api-v1.0.yaml -g nodejs-express-server -o services/core-stub --additional-properties=useES6=true,serverPort=3000"
   },
   "devDependencies": {

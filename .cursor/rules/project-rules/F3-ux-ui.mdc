@@ -1,11 +1,23 @@
 ---
-description: "TAGS: [ui,ux,design,tokens] | TRIGGERS: foundation,interaction,design tokens | SCOPE: project-rules | DESCRIPTION: Validates design tokens and component specs for UX/UI."
+description: "TAGS: [ui,ux,design,tokens] | TRIGGERS: f3,foundation,interaction,design tokens | SCOPE: project-rules | DESCRIPTION: F3 UX/UI end-to-end with Inputs/Outputs/Acceptance."
 alwaysApply: false
 ---
-# Project Rule: F3 UX/UI
+# Project Rule: F3 UX/UI (End-to-End)
+
+## Inputs (In)
+- PRD/PLAN
+
+## Outputs (Out)
+- `design/tokens/**`
+- `docs/design/*-spec.md`
+- `reports/audit-ux-<ts>.md`
+- `reports/validation-ux-<ts>.md`
 
 ## Protocol
-1. **Tokens:** design/tokens/* JSON present; AA considerations noted.
-2. **Specs:** docs/design/*-spec.md per component/page.
-3. **Integration:** tokens consumed in FE tasks; a11y checks planned.
+1. Define tokens with AA contrast; document component/page specs.
+2. Set a11y/perf budgets; Auditor/Validator GO before FE build.
+
+## Acceptance
+- Tokens at AA; specs present; budgets defined.
+- Validation = GO; no Disagree items.
 

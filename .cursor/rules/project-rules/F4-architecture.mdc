@@ -1,11 +1,24 @@
 ---
-description: "TAGS: [architecture,adr,api] | TRIGGERS: architecture,adr,contract | SCOPE: project-rules | DESCRIPTION: Validates ADRs and API contracts for architecture phase."
+description: "TAGS: [architecture,adr,api] | TRIGGERS: f4,architecture,adr,contract | SCOPE: project-rules | DESCRIPTION: F4 Architecture end-to-end with Inputs/Outputs/Acceptance."
 alwaysApply: false
 ---
-# Project Rule: F4 Architecture
+# Project Rule: F4 Architecture (End-to-End)
+
+## Inputs (In)
+- PRD/PLAN, Planning outputs
+
+## Outputs (Out)
+- `openapi/api-v1.0.yaml` (validated)
+- `docs/architecture/adr-*.md` (if applicable)
+- `reports/audit-arch-<sessionId>-<ts>.md`
+- `reports/validation-arch-<sessionId>-<ts>.md`
 
 ## Protocol
-1. **ADRs:** docs/architecture/ADR-*.md exist for key decisions.
-2. **Contracts:** openapi/api-vX.Y.yaml versioned; breaking changes bump version.
-3. **Stubs/mocks:** contract tests planned; FE pinned to version.
+1. Validate OpenAPI (CI gate) and record.
+2. Capture ADRs for key decisions.
+3. Auditor/Validator GO before implementation.
+
+## Acceptance
+- Contract validated; ADRs present for pivotal decisions.
+- Validation = GO; no Disagree items.
 

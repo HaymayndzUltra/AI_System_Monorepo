@@ -1,0 +1,22 @@
+---
+description: "TAGS: [frontend,e2e,planning,implementation,validation] | TRIGGERS: fe,e2e,frontend | SCOPE: project-rules | DESCRIPTION: Frontend end-to-end rule chaining F1→F3→F4→F6→F7→F9→F10 with explicit I/O and gates."
+alwaysApply: false
+---
+# Project Rule: Frontend End-to-End
+
+## Inputs (In)
+- `docs/planning/prd.md`, `PLAN.md`, `openapi/api-v1.0.yaml`
+
+## Outputs (Out)
+- `design/tokens/**`, `docs/design/*-spec.md`
+- `src/frontend/**`, tests, READMEs
+- `reports/audit-FE-<sessionId>-<ts>.md`, `reports/validation-FE-<sessionId>-<ts>.md`
+
+## Protocol
+1. Ensure phase prerequisites: F1/2/3/4 validations are GO for FE scope.
+2. Implement FE per tasks (Focus Mode); maintain tests/docs.
+3. Auditor → Validator per parent task/milestone; proceed only on GO.
+4. Hand off to QA/Security/Release/Observability rules.
+
+## Acceptance
+- All FE tasks complete with passing tests; validations = GO; artifacts present.

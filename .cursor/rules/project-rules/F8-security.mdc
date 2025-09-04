@@ -1,11 +1,22 @@
 ---
-description: "TAGS: [security,compliance] | TRIGGERS: security,threat,audit | SCOPE: project-rules | DESCRIPTION: Applies project-level security overlays and validations."
+description: "TAGS: [security,compliance] | TRIGGERS: f8,security,threat,audit | SCOPE: project-rules | DESCRIPTION: F8 Security end-to-end integrating overlay, findings, manifests, waivers."
 alwaysApply: false
 ---
-# Project Rule: F8 Security
+# Project Rule: F8 Security (End-to-End)
+
+## Inputs (In)
+- Repo snapshot, dependency manifests
+
+## Outputs (Out)
+- `frameworks/security/findings.yaml`
+- `frameworks/security/waivers.yaml`
+- `frameworks/security/manifests/<cycle>/handoff_manifest.yaml`
+- `frameworks/security/digests/<date>-digest.md`
 
 ## Protocol
-1. **Threat model:** documented per feature; sensitive data classified.
-2. **Scans:** SAST/DAST/SBOM pass; secrets scanning enabled.
-3. **Evidence:** audit logs and compliance evidence collected.
+1. Apply F8 overlay checks (secrets, deps, authz, privacy, audit).
+2. Produce findings and manifests; Auditor/Validator on critical zero.
+
+## Acceptance
+- Critical = 0 (or waived with rationale); snapshot consistency OK.
 

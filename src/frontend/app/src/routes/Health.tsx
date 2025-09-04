@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { fetchJson, HttpError } from '../lib/api'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore - compile-time import only used in dev
-import devMock from '../mocks/health.json'
 
 type HealthResponse = {
   status: string
@@ -12,9 +9,9 @@ type HealthResponse = {
 
 export default function Health() {
   const isDev = import.meta.env.DEV
-  const [data, setData] = useState<HealthResponse | null>(isDev ? (devMock as HealthResponse) : null)
+  const [data, setData] = useState<HealthResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(!isDev)
+  const [loading, setLoading] = useState<boolean>(true)
   const isMounted = useRef(true)
 
   useEffect(() => {
@@ -34,22 +31,17 @@ export default function Health() {
       }, 5000)
 
       let res: HealthResponse
-      const bust = import.meta.env.DEV ? `?t=${Date.now()}` : ''
-      const primary = import.meta.env.DEV ? `/health.json${bust}` : `/health${bust}`
-      const fallback = import.meta.env.DEV ? `/health${bust}` : `/health.json${bust}`
-      if (import.meta.env.DEV) {
-        // Prefer local mock at compile-time in dev
-        res = devMock as HealthResponse
-      } else {
-        try {
-          res = await fetchJson<HealthResponse>(primary, { timeoutMs: 4000 })
-        } catch (err) {
-          const code = err instanceof HttpError ? err.status : undefined
-          if (code === 404 || code === 200 || (err as Error).name === 'AbortError') {
-            res = await fetchJson<HealthResponse>(fallback, { timeoutMs: 4000 })
-          } else {
-            throw err
-          }
+      const bust = isDev ? `?t=${Date.now()}` : ''
+      const primary = `/health${bust}`
+      const fallback = `/health.json${bust}`
+      try {
+        res = await fetchJson<HealthResponse>(primary, { timeoutMs: 4000 })
+      } catch (err) {
+        const code = err instanceof HttpError ? err.status : undefined
+        if (code === 404 || code === 200 || (err as Error).name === 'AbortError') {
+          res = await fetchJson<HealthResponse>(fallback, { timeoutMs: 4000 })
+        } else {
+          throw err
         }
       }
       if (isMounted.current) {
@@ -57,6 +49,9 @@ export default function Health() {
       }
       window.clearTimeout(safetyId)
     } catch (err) {
+      // Ensure safety timeout is cleared on error
+      // (In case it hasn't fired yet.)
+      // No-op if already cleared
       if (!isMounted.current) return
       if (err instanceof HttpError) {
         setError(`Server error: ${err.status}`)
@@ -71,10 +66,10 @@ export default function Health() {
   }
 
   useEffect(() => {
-    if (!isDev) {
-      load()
-    }
-  }, [isDev])
+    load()
+    // we intentionally depend only on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <main style={{ maxWidth: 960, margin: '0 auto', padding: 'var(--space-6)' }}>

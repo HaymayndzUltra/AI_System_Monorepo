@@ -19,3 +19,10 @@ alwaysApply: false
 
 ## Acceptance
 - All BE tasks complete with passing tests; validations = GO; artifacts present.
+
+[STRICT]
+- BE implementation MUST NOT start until F4 OpenAPI validation is passing.
+- Every parent task MUST pass Auditor→Validator before the next parent task.
+
+[GUIDELINE]
+- Keep endpoints contract-first; generate stubs when helpful.

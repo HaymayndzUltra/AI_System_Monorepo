@@ -22,3 +22,10 @@ alwaysApply: false
 - Contract validated; ADRs present for pivotal decisions.
 - Validation = GO; no Disagree items.
 
+[STRICT]
+- OpenAPI validation MUST pass in CI before F6 starts.
+- Breaking changes MUST bump `api-vX.Y` and trigger FE retargeting per plan.
+
+[GUIDELINE]
+- Co-locate ADRs with rationale and tradeoffs; link to audits.
+

@@ -21,3 +21,10 @@ alwaysApply: false
 - Tokens at AA; specs present; budgets defined.
 - Validation = GO; no Disagree items.
 
+[STRICT]
+- Tokens MUST meet AA contrast and be referenced by FE build plan.
+- A11y keyboard/ARIA checks MUST be specified prior to FE coding.
+
+[GUIDELINE]
+- Prefer token-driven theming; avoid hard-coded values.
+

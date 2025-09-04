@@ -20,3 +20,10 @@ alwaysApply: false
 
 ## Acceptance
 - All FE tasks complete with passing tests; validations = GO; artifacts present.
+
+[STRICT]
+- FE implementation MUST NOT start until F3 tokens/specs and F4 contract are GO.
+- Every parent task MUST pass Auditor→Validator before the next parent task.
+
+[GUIDELINE]
+- Keep FE changes token-driven and accessible by default.

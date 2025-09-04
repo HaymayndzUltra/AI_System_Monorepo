@@ -19,3 +19,10 @@ alwaysApply: false
 ## Acceptance
 - Notes, manifests, and validation present; rollback ready.
 
+[STRICT]
+- Production deploy MUST be blocked without Validator GO and rollback plan.
+- Release notes MUST list breaking changes and dependency risks.
+
+[GUIDELINE]
+- Prefer progressive delivery (blue/green or canary) with quick rollback.
+

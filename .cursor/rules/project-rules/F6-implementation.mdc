@@ -21,3 +21,10 @@ alwaysApply: false
 - All subtasks complete with passing tests.
 - Validation = GO; no Disagree items.
 
+[STRICT]
+- Each parent task MUST end with Auditor→Validator GO before moving on.
+- New code MUST include unit/integration tests and updated READMEs.
+
+[GUIDELINE]
+- Keep PRs scoped to one parent task to maintain Focus Mode quality.
+

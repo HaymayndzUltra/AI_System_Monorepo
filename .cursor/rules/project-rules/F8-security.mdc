@@ -20,3 +20,10 @@ alwaysApply: false
 ## Acceptance
 - Critical = 0 (or waived with rationale); snapshot consistency OK.
 
+[STRICT]
+- No plaintext secrets MUST exist in code/configs; findings MUST enumerate checks performed.
+- Waivers MUST include owner, expiry, and justification.
+
+[GUIDELINE]
+- Keep SBOMs and scan logs attached as evidence.
+

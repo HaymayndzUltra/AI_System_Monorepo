@@ -22,3 +22,10 @@ alwaysApply: false
 - Brief and RAD present and complete.
 - Validation = GO; no Disagree items.
 
+[STRICT]
+- The Auditor → Validator loop MUST complete with Decision=GO before transitioning to F2.
+- KPIs in Brief MUST have baseline→target and measurement sources.
+
+[GUIDELINE]
+- Prefer concise, evidence-linked audits; avoid narrative without references.
+

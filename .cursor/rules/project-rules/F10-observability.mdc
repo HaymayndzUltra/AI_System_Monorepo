@@ -19,3 +19,10 @@ alwaysApply: false
 ## Acceptance
 - Manifests and digests present; SLOs documented.
 
+[STRICT]
+- SLOs MUST have thresholds and alert policies; dashboards MUST be linked.
+- Validation report MUST include links to metrics/trace/log panels.
+
+[GUIDELINE]
+- Prefer correlation IDs across logs/traces/metrics for root-cause speed.
+

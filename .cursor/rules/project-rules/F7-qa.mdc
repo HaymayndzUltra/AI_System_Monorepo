@@ -20,3 +20,10 @@ alwaysApply: false
 - Coverage meets thresholds; tests pass.
 - Validation = GO; no Disagree items.
 
+[STRICT]
+- Coverage thresholds MUST be met or waivered with justification.
+- Validation report MUST reference coverage artifacts by path.
+
+[GUIDELINE]
+- Track flaky tests and keep flakes < 2%.
+

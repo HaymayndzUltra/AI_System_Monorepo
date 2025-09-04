@@ -24,3 +24,10 @@ alwaysApply: false
 - PRD complete; tasks and slices present.
 - Validation = GO; no Disagree items.
 
+[STRICT]
+- PRD MUST be approved before tasks execution begins.
+- Slices.yaml MUST declare `contractsVersion` and correct FE/BE paths.
+
+[GUIDELINE]
+- Keep tasks atomic and parent-task focused for Focus Mode execution.
+

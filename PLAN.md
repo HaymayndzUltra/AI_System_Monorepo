@@ -66,6 +66,23 @@ Based on PRD: `docs/planning/prd.md`
       - [ ] 2.3.4 Implement phase notification system for stakeholders
       - [ ] 2.3.5 Create phase analytics and reporting dashboard
 
+- [ ] **2.4 Planner Parallelization (FE/BE Slice Model)**
+> **Recommended Model:** `System Integrator`
+  - [ ] 2.4.1 Define FE slice metadata
+      - `parallelGroup: FE`
+      - `paths: ["src/frontend/**", "design/tokens/**", "docs/design/**"]`
+      - `contractsVersion: api-v1.0`
+      - `canRunParallel: true`
+  - [ ] 2.4.2 Define BE slice metadata
+      - `parallelGroup: BE`
+      - `paths: ["src/backend/**", "services/**", "openapi/**"]`
+      - `contractsVersion: api-v1.0`
+      - `canRunParallel: true`
+  - [ ] 2.4.3 Generate per-slice tasks
+      - Emit `tasks-frontend.md` and `tasks-backend.md` derived from PRD and this PLAN, each carrying the metadata above and explicit I/O (inputs: `docs/planning/prd.md`, `openapi/api-v1.0.yaml`; outputs: code/tests/docs under slice paths, `reports/audit-*.md`, `reports/validation-*.md`).
+  - [ ] 2.4.4 Pin API contract
+      - Freeze `openapi/api-v1.0.yaml` for FE consumption. Contract changes bump minor (e.g., `api-v1.1`) and trigger FE re-targeting.
+
 - [ ] **3.0 Set up Immutable Artifact Management**
 > **Recommended Model:** `Code Architect`
   - [ ] 3.1 **Artifact Storage System:**
@@ -175,6 +192,20 @@ Based on PRD: `docs/planning/prd.md`
       - [ ] 7.3.3 Build workflow monitoring with real-time status tracking
       - [ ] 7.3.4 Implement workflow optimization with bottleneck identification
       - [ ] 7.3.5 Create workflow documentation with usage examples
+
+  - [ ] 7.4 Parallel Session Orchestration (FE & BE)
+      - [ ] 7.4.1 Session isolation from snapshot
+          - Record base SHA (HEAD) for both sessions; background agents auto-create branches/PRs.
+      - [ ] 7.4.2 Start FE session
+          - Trigger: `process tasks tasks-frontend.md start on task 1`
+          - I/O: Inputs `docs/planning/prd.md`, `openapi/api-v1.0.yaml`; Outputs FE code/tests/docs, `reports/audit-FE-<sessionId>-<ts>.md`, `reports/validation-FE-<sessionId>-<ts>.md`.
+      - [ ] 7.4.3 Start BE session
+          - Trigger: `process tasks tasks-backend.md start on task 1`
+          - I/O: Inputs `docs/planning/prd.md`, `openapi/api-v1.0.yaml` (producer); Outputs BE code/tests/docs, `reports/audit-BE-<sessionId>-<ts>.md`, `reports/validation-BE-<sessionId>-<ts>.md`.
+      - [ ] 7.4.4 Auditor → Validator GO-gate per slice
+          - After each parent task, run `audit {FE|BE} @ HEAD` → `validate {FE|BE} using {audit}`. Proceed only when Decision=GO and no disagreements; else loop (max 3 cycles).
+      - [ ] 7.4.5 Conflict & contract management
+          - If BE needs contract changes, bump to `api-v1.x+1`, regenerate stubs, re-run FE validation against the new version.
 
 - [ ] **8.0 Build Comprehensive Reporting System**
 > **Recommended Model:** `System Integrator`

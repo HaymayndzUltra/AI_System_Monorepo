@@ -1,4 +1,24 @@
-# React + TypeScript + Vite
+# App Shell (Frontend)
+
+This app is the frontend App Shell scaffolded with Vite + React + TypeScript.
+
+## Scripts
+
+```bash
+npm run dev        # start dev server
+npm run build      # type-check and build
+npm run preview    # preview build
+npm run test       # run unit tests in watch mode
+npm run test:run   # run unit tests once (CI)
+```
+
+## Design Tokens
+
+Shared tokens live at `/design/tokens/tokens.css` and are imported in `src/index.css`.
+
+## Routing
+
+`react-router-dom` is configured in `src/main.tsx` with routes for `/` and `/health`.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

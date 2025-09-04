@@ -24,13 +24,14 @@ export default function Health() {
     setError(null)
     try {
       let res: HealthResponse
+      const primary = import.meta.env.DEV ? '/health.json' : '/health'
+      const fallback = import.meta.env.DEV ? '/health' : '/health.json'
       try {
-        res = await fetchJson<HealthResponse>('/health', { timeoutMs: 8000 })
+        res = await fetchJson<HealthResponse>(primary, { timeoutMs: 4000 })
       } catch (err) {
-        // Fallback to static mock if 404 or unexpected content-type
         const code = err instanceof HttpError ? err.status : undefined
-        if (code === 404 || code === 200) {
-          res = await fetchJson<HealthResponse>('/health.json', { timeoutMs: 3000 })
+        if (code === 404 || code === 200 || (err as Error).name === 'AbortError') {
+          res = await fetchJson<HealthResponse>(fallback, { timeoutMs: 4000 })
         } else {
           throw err
         }

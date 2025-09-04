@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { fetchJson, HttpError } from '../lib/api'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - compile-time import only used in dev
+import devMock from '../mocks/health.json'
 
 type HealthResponse = {
   status: string
@@ -33,14 +36,19 @@ export default function Health() {
       const bust = import.meta.env.DEV ? `?t=${Date.now()}` : ''
       const primary = import.meta.env.DEV ? `/health.json${bust}` : `/health${bust}`
       const fallback = import.meta.env.DEV ? `/health${bust}` : `/health.json${bust}`
-      try {
-        res = await fetchJson<HealthResponse>(primary, { timeoutMs: 4000 })
-      } catch (err) {
-        const code = err instanceof HttpError ? err.status : undefined
-        if (code === 404 || code === 200 || (err as Error).name === 'AbortError') {
-          res = await fetchJson<HealthResponse>(fallback, { timeoutMs: 4000 })
-        } else {
-          throw err
+      if (import.meta.env.DEV) {
+        // Prefer local mock at compile-time in dev
+        res = devMock as HealthResponse
+      } else {
+        try {
+          res = await fetchJson<HealthResponse>(primary, { timeoutMs: 4000 })
+        } catch (err) {
+          const code = err instanceof HttpError ? err.status : undefined
+          if (code === 404 || code === 200 || (err as Error).name === 'AbortError') {
+            res = await fetchJson<HealthResponse>(fallback, { timeoutMs: 4000 })
+          } else {
+            throw err
+          }
         }
       }
       if (isMounted.current) {

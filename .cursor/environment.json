@@ -1,6 +1,5 @@
 {
-    "snapshot": "POPULATED_FROM_SETTINGS",
-    "install": "true",
-    "terminals": []
-  }
-  
+  "snapshot": "POPULATED_FROM_SETTINGS",
+  "install": "true",
+  "terminals": []
+}

@@ -1,0 +1,11 @@
+---
+description: "TAGS: [security,compliance] | TRIGGERS: security,threat,audit | SCOPE: project-rules | DESCRIPTION: Applies project-level security overlays and validations."
+alwaysApply: false
+---
+# Project Rule: F8 Security
+
+## Protocol
+1. **Threat model:** documented per feature; sensitive data classified.
+2. **Scans:** SAST/DAST/SBOM pass; secrets scanning enabled.
+3. **Evidence:** audit logs and compliance evidence collected.
+

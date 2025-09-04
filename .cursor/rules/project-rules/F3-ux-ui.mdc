@@ -1,0 +1,11 @@
+---
+description: "TAGS: [ui,ux,design,tokens] | TRIGGERS: foundation,interaction,design tokens | SCOPE: project-rules | DESCRIPTION: Validates design tokens and component specs for UX/UI."
+alwaysApply: false
+---
+# Project Rule: F3 UX/UI
+
+## Protocol
+1. **Tokens:** design/tokens/* JSON present; AA considerations noted.
+2. **Specs:** docs/design/*-spec.md per component/page.
+3. **Integration:** tokens consumed in FE tasks; a11y checks planned.
+

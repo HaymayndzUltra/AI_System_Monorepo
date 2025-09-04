@@ -1,0 +1,11 @@
+---
+description: "TAGS: [implementation,code,tests] | TRIGGERS: implement,process tasks | SCOPE: project-rules | DESCRIPTION: Enforces coding standards and tests during implementation."
+alwaysApply: false
+---
+# Project Rule: F6 Implementation
+
+## Protocol
+1. **Standards:** apply code quality and modification safety rules.
+2. **Tests:** unit/integration required for new code; FE/BE slices follow tasks.
+3. **Docs:** update component/service READMEs.
+

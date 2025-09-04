@@ -23,9 +23,16 @@ export default function Health() {
     setLoading(true)
     setError(null)
     try {
+      const safetyId = window.setTimeout(() => {
+        if (!isMounted.current) return
+        setError('Request timed out')
+        setLoading(false)
+      }, 5000)
+
       let res: HealthResponse
-      const primary = import.meta.env.DEV ? '/health.json' : '/health'
-      const fallback = import.meta.env.DEV ? '/health' : '/health.json'
+      const bust = import.meta.env.DEV ? `?t=${Date.now()}` : ''
+      const primary = import.meta.env.DEV ? `/health.json${bust}` : `/health${bust}`
+      const fallback = import.meta.env.DEV ? `/health${bust}` : `/health.json${bust}`
       try {
         res = await fetchJson<HealthResponse>(primary, { timeoutMs: 4000 })
       } catch (err) {
@@ -39,6 +46,7 @@ export default function Health() {
       if (isMounted.current) {
         setData(res)
       }
+      window.clearTimeout(safetyId)
     } catch (err) {
       if (!isMounted.current) return
       if (err instanceof HttpError) {

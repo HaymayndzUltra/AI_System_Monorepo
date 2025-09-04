@@ -32,10 +32,16 @@ export async function fetchJson<TResponse>(
       },
       signal: options.signal ?? controller.signal
     })
+    const contentType = res.headers.get('content-type') || ''
+    const isJson = contentType.includes('application/json')
     const text = await res.text()
-    const json = text ? safeJsonParse(text) : undefined
+    const json = isJson && text ? safeJsonParse(text) : undefined
     if (!res.ok) {
       throw new HttpError(`Request failed with status ${res.status}`, res.status, json)
+    }
+    if (!isJson) {
+      // Signal unexpected content-type so callers can fallback
+      throw new HttpError('Unexpected content-type', 200)
     }
     return json as TResponse
   } finally {

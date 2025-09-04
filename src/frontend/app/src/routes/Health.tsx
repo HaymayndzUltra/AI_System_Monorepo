@@ -23,7 +23,18 @@ export default function Health() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetchJson<HealthResponse>('/health', { timeoutMs: 8000 })
+      let res: HealthResponse
+      try {
+        res = await fetchJson<HealthResponse>('/health', { timeoutMs: 8000 })
+      } catch (err) {
+        // Fallback to static mock if 404 or unexpected content-type
+        const code = err instanceof HttpError ? err.status : undefined
+        if (code === 404 || code === 200) {
+          res = await fetchJson<HealthResponse>('/health.json', { timeoutMs: 3000 })
+        } else {
+          throw err
+        }
+      }
       if (isMounted.current) {
         setData(res)
       }

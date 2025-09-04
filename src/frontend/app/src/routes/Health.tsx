@@ -11,9 +11,10 @@ type HealthResponse = {
 }
 
 export default function Health() {
-  const [data, setData] = useState<HealthResponse | null>(null)
+  const isDev = import.meta.env.DEV
+  const [data, setData] = useState<HealthResponse | null>(isDev ? (devMock as HealthResponse) : null)
   const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(!isDev)
   const isMounted = useRef(true)
 
   useEffect(() => {
@@ -70,9 +71,10 @@ export default function Health() {
   }
 
   useEffect(() => {
-    load()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    if (!isDev) {
+      load()
+    }
+  }, [isDev])
 
   return (
     <main style={{ maxWidth: 960, margin: '0 auto', padding: 'var(--space-6)' }}>

@@ -1,0 +1,9 @@
+name: basic-check
+
+on: [push, pull_request]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, this is a basic status check"

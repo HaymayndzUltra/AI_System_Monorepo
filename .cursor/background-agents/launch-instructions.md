@@ -33,3 +33,19 @@ Follow these steps. You can copy/paste prompt files into each agent.
 - Validate quality gates per framework before handoff.
 - Keep ADRs, API contracts, design tokens, and runbooks versioned.
 
+## 7) Auditor ↔ Validator (Two GPT-5 Sessions)
+Run two background agent sessions in parallel:
+
+- Session A (Auditor / GPT-5):
+  - Prompt: `.cursor/background-agents/prompts/08-auditor-gpt5.md`
+  - Output: `reports/audit-<phase|slice>-<sessionId>-<ts>.md`
+
+- Session B (Validator / GPT-5):
+  - Prompt: `.cursor/background-agents/prompts/09-validator-gpt5.md`
+  - Output: `reports/validation-<phase|slice>-<sessionId>-<ts>.md`
+
+Handoff Loop per parent task:
+1. Auditor produces the audit report and signals READY.
+2. Validator reads audit, checks criteria/gates, issues GO/NO-GO.
+3. If NO-GO, feed remediations to implementation; else proceed to next parent task.
+

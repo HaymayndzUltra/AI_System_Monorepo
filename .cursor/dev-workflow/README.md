@@ -111,3 +111,17 @@ Apply instructions from .ai-governor/dev-workflow/5-background-agent-coordinatio
 ### A Note on the Learning Curve
 
 Your first few interactions with this framework might require more corrections. **This is normal and by design.** You are actively *teaching* the AI the nuances of your codebase. The initial investment pays off exponentially as the AI's context gets richer, its proposals become more accurate, and it evolves into a true expert companion for your project.
+
+---
+
+## Slices and Audits Integration
+
+- Slices metadata: `.cursor/dev-workflow/slices.yaml` defines FE/BE paths and contract version.
+- Audits:
+  - Backend audit artifact: `reports/audit-backend-HEAD.md`
+  - Frontend audit artifact: `reports/audit-FE-<sessionId>-<ts>.md`
+  - Scripts: `.cursor/scripts/audit_be.sh`, `.cursor/scripts/audit_fe.sh`
+
+Usage shortcuts:
+- Backend: `process tasks tasks-backend.md start on task 1`
+- Frontend: `process tasks tasks-frontend.md start on task 1`

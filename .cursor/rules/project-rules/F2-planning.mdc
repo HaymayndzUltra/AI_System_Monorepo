@@ -1,0 +1,11 @@
+---
+description: "TAGS: [planning,prd,tasks] | TRIGGERS: prd,task generation | SCOPE: project-rules | DESCRIPTION: Ensures PRD completeness and per-slice task generation."
+alwaysApply: false
+---
+# Project Rule: F2 Planning
+
+## Protocol
+1. **Outputs required:** `docs/planning/prd.md`, `tasks-frontend.md`, `tasks-backend.md`.
+2. **PRD completeness:** goals, constraints, APIs in-scope, acceptance criteria.
+3. **Slices:** FE/BE tasks include metadata (parallelGroup, paths, contractsVersion).
+

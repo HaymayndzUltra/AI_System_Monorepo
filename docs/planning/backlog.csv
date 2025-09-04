@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ID,Title,Description,Priority,Estimate,Phase,Assignee,Status,Dependencies,Acceptance Criteria
 F1-001,"Complete Discovery Phase","Finalize discovery brief, RAD, and PRD with stakeholder approval",Critical,3,F1,Product Manager,Completed,None,"- Discovery brief completed and approved
 - RAD completed with stakeholder validation
@@ -91,3 +92,10 @@ F9-001,"Post-Launch Optimization","Monitor and optimize based on production usag
 - User feedback incorporated
 - Feature enhancements identified
 - Retrospective conducted"
+=======
+id,title,phase,owner,status
+BL-1,Define KPIs,F1,PM,open
+BL-2,Write PRD,F2,PM,open
+BL-3,Create FE tasks,F2,TechLead,open
+BL-4,Create BE tasks,F2,TechLead,open
+>>>>>>> cursor/analyze-developer-workflow-and-rule-triggers-a3af

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Product Roadmap
 ## AI-Governed Development Framework
 
@@ -452,3 +453,8 @@ This roadmap outlines the phased delivery of the AI-Governed Development Framewo
 ---
 
 *This roadmap will be updated weekly to reflect actual progress and any changes in scope or timeline. All stakeholders will be notified of significant changes.*
+=======
+# Roadmap
+
+- F1 Discovery → F2 Planning → F3 UX/UI → F4 Architecture → F5 Data/ML → F6 Implementation → F7 QA → F8 Security → F9 Release → F10 Observability
+>>>>>>> cursor/analyze-developer-workflow-and-rule-triggers-a3af

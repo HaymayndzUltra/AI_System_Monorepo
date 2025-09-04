@@ -1,0 +1,11 @@
+---
+description: "TAGS: [observability,metrics,tracing,retro] | TRIGGERS: observability,retro | SCOPE: project-rules | DESCRIPTION: Ensures telemetry, SLOs, dashboards, and retrospectives."
+alwaysApply: false
+---
+# Project Rule: F10 Observability & Retro
+
+## Protocol
+1. **Telemetry:** structured logs, metrics, traces with correlation IDs.
+2. **SLOs:** defined and monitored; alerts configured.
+3. **Retro:** implementation retrospective documented.
+

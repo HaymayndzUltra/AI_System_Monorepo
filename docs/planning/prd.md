@@ -1,4 +1,5 @@
 # Product Requirements Document (PRD)
+<<<<<<< HEAD
 ## AI-Governed Development Framework
 
 **Version:** 1.0  
@@ -404,3 +405,25 @@ The AI-Governed Development Framework provides:
 - **Document Owner**: Product Engineering Team
 - **Last Updated**: [Current Date]
 - **Next Review**: End of Week 2 development
+=======
+
+Commit: 864d930
+
+## Overview
+- Purpose: Deliver AI-governed development framework across F1–F10 with background agents and rules.
+- Primary components: FE slice, BE slice, Auditor, Validator, Trigger System, Artifact System.
+
+## Functional Requirements
+- FE: consume API v1.0 endpoints; implement UI per tokens/specs.
+- BE: expose health endpoint and planned services; maintain contract versioning.
+- Governance: Auditor → Validator gates per parent task.
+
+## Non-Functional Requirements
+- Performance budgets, security overlay (F8), CI gates.
+
+## Acceptance Criteria
+- PRD approved; tasks-frontend.md / tasks-backend.md generated.
+
+## Out of Scope
+- Live deployment specifics (handled in F9/F12).
+>>>>>>> cursor/analyze-developer-workflow-and-rule-triggers-a3af

@@ -1,0 +1,11 @@
+---
+description: "TAGS: [data,schema,etl,ml] | TRIGGERS: data schema,pipeline | SCOPE: project-rules | DESCRIPTION: Validates data schemas and pipelines for F5."
+alwaysApply: false
+---
+# Project Rule: F5 Data/ML
+
+## Protocol
+1. **Schemas:** versioned; quality thresholds defined.
+2. **Pipelines:** reproducible; lineage documented.
+3. **Privacy:** GDPR/CCPA constraints applied.
+

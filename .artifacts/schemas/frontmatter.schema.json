@@ -1,0 +1,15 @@
+{
+  "title": "Artifact Frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["runId", "version", "status", "timestamp"],
+  "properties": {
+    "runId": {"type": "string"},
+    "version": {"type": "string", "pattern": "^v?\\d+\\.\\d+\\.\\d+$"},
+    "status": {"type": "string", "enum": ["draft", "approved", "archived"]},
+    "timestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    }
+  }
+}

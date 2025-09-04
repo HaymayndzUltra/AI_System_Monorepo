@@ -1,0 +1,11 @@
+---
+description: "TAGS: [qa,testing,coverage] | TRIGGERS: qa,test strategy | SCOPE: project-rules | DESCRIPTION: Validates QA strategy and coverage."
+alwaysApply: false
+---
+# Project Rule: F7 QA
+
+## Protocol
+1. **Strategy:** documented test strategy; coverage thresholds.
+2. **Pipelines:** CI executes suites reliably; flakes < 2%.
+3. **Reports:** test reports and trends stored.
+

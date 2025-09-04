@@ -1,0 +1,15 @@
+{
+  "name": "ai-governor-ci",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "ci:validate:rules": "node scripts/ci/validate-rules.js"
+  },
+  "devDependencies": {
+    "ajv-cli": "^0.6.0",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "swagger-cli": "^4.0.4"
+  }
+}

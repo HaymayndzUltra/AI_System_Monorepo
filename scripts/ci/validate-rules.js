@@ -8,7 +8,8 @@ function hasFrontmatter(p){
 
 const roots=[
   '/workspace/.cursor/rules/master-rules',
-  '/workspace/.cursor/rules/common-rules'
+  '/workspace/.cursor/rules/common-rules',
+  '/workspace/.cursor/rules/project-rules'
 ];
 let ok=true;
 for(const dir of roots){

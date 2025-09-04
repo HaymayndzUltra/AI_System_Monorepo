@@ -1,0 +1,5 @@
+id,title,phase,owner,status
+BL-1,Define KPIs,F1,PM,open
+BL-2,Write PRD,F2,PM,open
+BL-3,Create FE tasks,F2,TechLead,open
+BL-4,Create BE tasks,F2,TechLead,open

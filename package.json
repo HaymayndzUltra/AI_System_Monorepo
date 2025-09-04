@@ -7,7 +7,7 @@
     "ci:validate:rules": "node scripts/ci/validate-rules.js"
   },
   "devDependencies": {
-    "ajv-cli": "^5.0.0",
+    "ajv-cli": "^0.6.0",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "swagger-cli": "^4.0.4"

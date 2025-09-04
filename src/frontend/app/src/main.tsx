@@ -5,15 +5,6 @@ import './index.css'
 import App from './App.tsx'
 import Health from './routes/Health'
 
-function Health() {
-  return (
-    <main style={{ maxWidth: 960, margin: '0 auto', padding: 'var(--space-6)' }}>
-      <h1>Health</h1>
-      <p>Coming soon...</p>
-    </main>
-  )
-}
-
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
   { path: '/health', element: <Health /> },

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ruleset Lock",
+  "type": "object",
+  "required": ["commit", "seed", "input_fingerprint", "selected_rules"],
+  "properties": {
+    "commit": { "type": "string", "description": "Git SHA or HEAD" },
+    "seed": { "type": "integer" },
+    "tz": { "type": "string" },
+    "locale": { "type": "string" },
+    "system_digest": { "type": "string" },
+    "dev_digest": { "type": "string" },
+    "input_fingerprint": {
+      "type": "object",
+      "required": ["prompt_hash", "path_aliases_hash", "config_hash"],
+      "properties": {
+        "prompt_hash": { "type": "string" },
+        "path_aliases_hash": { "type": "string" },
+        "config_hash": { "type": "string" }
+      }
+    },
+    "selected_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "scope"],
+        "properties": {
+          "path": { "type": "string" },
+          "sha256": { "type": "string" },
+          "scope": { "type": "string", "enum": ["master", "common", "project"] }
+        }
+      }
+    },
+    "overlays_applied": { "type": "array", "items": { "type": "string" } },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "confidence_map": {
+      "type": "object",
+      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}
+

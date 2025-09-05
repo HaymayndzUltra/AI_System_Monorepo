@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tool Capability Declaration",
+  "type": "object",
+  "required": ["name", "kind", "can", "limits", "success_criteria"],
+  "properties": {
+    "name": { "type": "string" },
+    "kind": { "type": "string", "enum": ["search", "grep", "fs", "runner", "linter", "formatter", "test", "scm"] },
+    "can": { "type": "array", "items": { "type": "string" } },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "concurrency": { "type": "integer" },
+        "max_bytes": { "type": "integer" },
+        "timeout_ms": { "type": "integer" }
+      }
+    },
+    "latency_ms_p50": { "type": "integer" },
+    "latency_ms_p95": { "type": "integer" },
+    "needs_network": { "type": "boolean" },
+    "pii_risk": { "type": "string", "enum": ["low", "medium", "high"] },
+    "logs_secret_safe": { "type": "boolean" },
+    "success_criteria": { "type": "array", "items": { "type": "string" } }
+  }
+}
+

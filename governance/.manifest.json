@@ -1,0 +1,15 @@
+[
+  {"path": "/governance/confirmation-lexicon.json", "bytes": 277, "sha256": "5a5e25927cb70c08e743be6973e93423b4f8d01858d9a0de049626d2781c63b6"},
+  {"path": "/governance/doc-drift-checklist.md", "bytes": 349, "sha256": "95da097947d07edaf45a7921a03c7a3b5e37968474072c1c83852f73221e19ed"},
+  {"path": "/governance/handoff-package-spec.md", "bytes": 575, "sha256": "1e773bb2e9b77ffeb912f2ceec541b2bb5872b6ec6dd3a13a8bec4c6d75c01df"},
+  {"path": "/governance/path-aliases.json", "bytes": 1521, "sha256": "29c35a6a2cd0e9ff2b1e11d14c4e53b9fb059bfd14f7666e57f35a39d17e5258"},
+  {"path": "/governance/pr-templates/ui-governance.md", "bytes": 346, "sha256": "e204e94e087980b9022a84b9fbabb5389753e685db8be2767ccd24d3a263f44a"},
+  {"path": "/governance/router-config.yaml", "bytes": 867, "sha256": "44602e12988e70b45565c427cbef662766fae12e5346b5af080e41e6e2d1f317"},
+  {"path": "/governance/router-probe-spec.md", "bytes": 2124, "sha256": "86019d2880b2bc7531688058ca379e245d56fe8a2d9a99c4e01fa6b25de4275d"},
+  {"path": "/governance/ruleset-lock.example.json", "bytes": 751, "sha256": "6db73c8f537b1c051fd1cf2305a24aa6456b6061e57e8475982fc49c78801f43"},
+  {"path": "/governance/ruleset-lock.schema.json", "bytes": 1463, "sha256": "9862f94248ecf1c4222099ba3af6a388c3535dda33c03ce01e844b5603c663a9"},
+  {"path": "/governance/tool-capability.schema.json", "bytes": 972, "sha256": "dcb975efffd27b8eb0dd5262a4b57fb6c5bc0bfd9939cd6128e1399521e250eb"},
+  {"path": "/governance/tool-usage-guidelines.md", "bytes": 737, "sha256": "8e6d8727ee3e6f503dcb88a1070adc23c25ce468901c349eb997872addf5baf4"},
+  {"path": "/governance/unified-acceptance-matrix.md", "bytes": 334, "sha256": "34dbd526ad031f0ddfa03fae595f6d3185de2a82cee2a6426149ca646a4c859d"}
+]
+

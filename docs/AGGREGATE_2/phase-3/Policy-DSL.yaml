@@ -1,0 +1,45 @@
+policies:
+  - id: security_f8
+    when: any_change & risk>=minor
+    rule: .cursor/rules/master-rules/F8-security-and-compliance-overlay.mdc
+    gates:
+      - criticals_block: true
+      - secrets_in_repo: block
+      - sbom_on_release: true
+      - threat_model: required
+  - id: mod_safety
+    when: modifies_code | refactor | schema_change
+    rule: .cursor/rules/master-rules/4-master-rule-code-modification-safety-protocol.mdc
+    gates:
+      - change_plan: required
+      - validation_checklist: required
+  - id: docs_sync
+    when: significant_change | new_artifact
+    rule: .cursor/rules/master-rules/5-master-rule-documentation-and-context-guidelines.mdc
+    gates:
+      - docs_updated: required
+  - id: audit_validate
+    when: critical_path | contract_change
+    rule: .cursor/rules/master-rules/8-auditor-validator-protocol.mdc
+    gates:
+      - audit_pass: required
+      - validation_pass: required
+  - id: ui_budgets
+    when: domain==ui
+    rules:
+      - .cursor/rules/common-rules/common-rule-ui-foundation-design-system.mdc
+      - .cursor/rules/common-rules/common-rule-ui-interaction-a11y-perf.mdc
+    gates:
+      - aa_contrast: pass
+      - perf:
+          INP_p75: "<200ms"
+          LCP_p75: "<=2.5s"
+          CLS: "<=0.1"
+  - id: observability
+    when: domain in [backend,ui]
+    rules:
+      - .cursor/rules/project-rules/F10-observability.mdc
+    gates:
+      - slos_defined: required
+      - logs_schema: required
+      - traces_sampling: required

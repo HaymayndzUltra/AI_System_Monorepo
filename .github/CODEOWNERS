@@ -1,0 +1,5 @@
+# CODEOWNERS for governance artifacts
+/docs/AGGREGATE_2/* @architecture-team @security-team
+/ci/* @devex-team
+/.github/* @devex-team
+/workflow-plan-AGGREGATE_2.md @architecture-team

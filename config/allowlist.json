@@ -1,0 +1,20 @@
+{
+  "mode": "strict", 
+  "capabilities": [
+    "context.load",
+    "code.modify.safety",
+    "code.quality",
+    "docs.sync",
+    "security.overlay",
+    "audit.run",
+    "validation.run"
+  ],
+  "rules": [
+    ".cursor/rules/master-rules/1-master-rule-context-discovery.mdc",
+    ".cursor/rules/master-rules/4-master-rule-code-modification-safety-protocol.mdc",
+    ".cursor/rules/master-rules/3-master-rule-code-quality-checklist.mdc",
+    ".cursor/rules/master-rules/5-master-rule-documentation-and-context-guidelines.mdc",
+    ".cursor/rules/master-rules/F8-security-and-compliance-overlay.mdc",
+    ".cursor/rules/master-rules/8-auditor-validator-protocol.mdc"
+  ]
+}

@@ -1,0 +1,91 @@
+capabilities:
+  context.load:
+    rules:
+      - .cursor/rules/master-rules/1-master-rule-context-discovery.mdc
+    triggers: ["rule", "context", "analyze"]
+    outputs: ["Selected rules list"]
+  collab.resolve:
+    rules:
+      - .cursor/rules/master-rules/2-master-rule-ai-collaboration-guidelines.mdc
+    triggers: ["conflict", "clarify", "proceed", "how to"]
+    outputs: ["Protocol adherence"]
+  code.quality:
+    rules:
+      - .cursor/rules/master-rules/3-master-rule-code-quality-checklist.mdc
+    triggers: ["code", "refactor", "quality", "lint", "test"]
+    outputs: ["Quality checklist"]
+    gates: ["CI must pass"]
+  code.modify.safety:
+    rules:
+      - .cursor/rules/master-rules/4-master-rule-code-modification-safety-protocol.mdc
+    triggers: ["modify", "edit", "change", "update", "implement", "refactor"]
+    outputs: ["Change plan", "validation checklist"]
+    gates: ["Safety checklist must pass"]
+  docs.sync:
+    rules:
+      - .cursor/rules/master-rules/5-master-rule-documentation-and-context-guidelines.mdc
+    triggers: ["readme", "documentation", "docs"]
+    outputs: ["Updated docs"]
+    gates: ["Docs lint required"]
+  complex.context:
+    rules:
+      - .cursor/rules/master-rules/6-master-rule-complex-feature-context-preservation.mdc
+    triggers: ["complex", "algorithm", "api-integration"]
+    outputs: ["Context bundle", "invariants"]
+    gates: ["Reviewer checklist"]
+  workflow.plan:
+    rules:
+      - .cursor/rules/master-rules/7-dev-workflow-command-router.mdc
+    triggers: ["bootstrap", "plan"]
+    outputs: ["Dev-workflow artifacts"]
+  workflow.taskgen:
+    rules:
+      - .cursor/rules/master-rules/7-dev-workflow-command-router.mdc
+    triggers: ["taskgen", "tasks", "generate"]
+    outputs: ["Dev-workflow artifacts"]
+  workflow.execute:
+    rules:
+      - .cursor/rules/master-rules/7-dev-workflow-command-router.mdc
+    triggers: ["execute", "implement", "process"]
+    outputs: ["Dev-workflow artifacts"]
+  workflow.retro:
+    rules:
+      - .cursor/rules/master-rules/7-dev-workflow-command-router.mdc
+    triggers: ["retro", "retrospective", "review"]
+    outputs: ["Stage completion logs"]
+  audit.run:
+    rules:
+      - .cursor/rules/master-rules/8-auditor-validator-protocol.mdc
+    triggers: ["audit"]
+    outputs: ["reports/audit-*.md"]
+    gates: ["Audit gate must pass"]
+  validation.run:
+    rules:
+      - .cursor/rules/master-rules/8-auditor-validator-protocol.mdc
+    triggers: ["validate", "validation"]
+    outputs: ["reports/validation-*.md"]
+    gates: ["Validation gate must pass"]
+  security.overlay:
+    rules:
+      - .cursor/rules/master-rules/F8-security-and-compliance-overlay.mdc
+    triggers: ["security", "compliance", "threat", "audit"]
+    outputs: ["[SECURITY CHECK] notes"]
+    gates: ["Block on criticals"]
+  ui.foundation:
+    rules:
+      - .cursor/rules/common-rules/common-rule-ui-foundation-design-system.mdc
+    triggers: ["foundation", "tokens", "aa", "contrast"]
+    outputs: ["tokens", "grids"]
+    gates: ["AA contrast"]
+  ui.interaction:
+    rules:
+      - .cursor/rules/common-rules/common-rule-ui-interaction-a11y-perf.mdc
+    triggers: ["interaction", "aria", "keyboard", "perf", "inp", "lcp", "cls"]
+    outputs: ["interaction/perf specs"]
+    gates: ["INP/LCP budgets"]
+  ui.premium:
+    rules:
+      - .cursor/rules/common-rules/common-rule-ui-premium-brand-dataviz-enterprise-gated.mdc
+    triggers: ["premium", "brand", "rbac"]
+    outputs: ["premium specs"]
+    gates: ["Preserve AA/perf"]

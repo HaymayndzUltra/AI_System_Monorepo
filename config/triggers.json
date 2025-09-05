@@ -1,0 +1,23 @@
+{
+  "context.load": ["rule", "context", "analyze"],
+  "collab.resolve": ["conflict", "clarify", "proceed", "how to"],
+  "code.quality": ["code", "refactor", "quality", "lint", "test"],
+  "code.modify.safety": ["modify", "edit", "change", "update", "implement", "refactor"],
+  "docs.sync": ["readme", "documentation", "docs"],
+  "complex.context": ["complex", "algorithm", "api-integration"],
+  "workflow.plan": ["bootstrap", "plan"],
+  "workflow.taskgen": ["taskgen", "tasks", "generate"],
+  "workflow.execute": ["execute", "implement", "process"],
+  "workflow.retro": ["retro", "retrospective", "review"],
+  "audit.run": ["audit"],
+  "validation.run": ["validate", "validation"],
+  "security.overlay": ["security", "compliance", "threat", "audit"],
+  "ui.foundation": ["foundation", "tokens", "aa", "contrast"],
+  "ui.interaction": ["interaction", "aria", "keyboard", "perf", "inP", "lcp", "cls"],
+  "ui.premium": ["premium", "brand", "rbac"],
+  "observe.metrics": ["observability", "metrics", "slo"],
+  "observe.traces": ["traces", "trace"],
+  "observe.logs": ["logs", "logging"],
+  "release.prepare": ["release", "notes"],
+  "release.deploy": ["deploy", "deployment"]
+}

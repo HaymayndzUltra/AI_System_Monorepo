@@ -1,0 +1,39 @@
+name: Autoplan
+
+on:
+  push:
+    paths:
+      - 'briefs/**'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run autoplan for changed briefs
+        run: |
+          CHANGED=$(git diff --name-only ${{ github.sha }}~1 ${{ github.sha }} | grep '^briefs/.*\.md$' || true)
+          if [ -z "$CHANGED" ]; then echo "No briefs changed"; exit 0; fi
+          for f in $CHANGED; do
+            echo "Generating plan for $f"
+            node scripts/autoplan.cjs "$f"
+          done
+      - name: Create branch and commit
+        run: |
+          BR=autoplan-${{ github.run_id }}
+          git checkout -b "$BR"
+          git add docs/AGGREGATE_2/autoplan
+          git config user.email "devnull@example.com"
+          git config user.name "autoplan-bot"
+          git commit -m "chore(autoplan): generate plans from briefs"
+          git push -u origin "$BR"
+      - name: Open PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Opening PR"
+          echo "Autoplan results" | gh pr create -B ${{ github.ref_name }} -H "$BR" -t "Autoplan: briefs -> plans" -F -

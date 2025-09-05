@@ -1,0 +1,24 @@
+gates:
+  security_f8:
+    criticals_block: true
+    secrets_in_repo: block
+    sbom_on_release: true
+    threat_model: required
+  mod_safety:
+    change_plan: required
+    validation_checklist: required
+  docs_sync:
+    docs_updated: required
+  audit_validate:
+    audit_pass: required
+    validation_pass: required
+  ui_budgets:
+    aa_contrast: pass
+    perf:
+      INP_p75: "<200ms"
+      LCP_p75: "<=2.5s"
+      CLS: "<=0.1"
+  observability:
+    slos_defined: required
+    logs_schema: required
+    traces_sampling: required

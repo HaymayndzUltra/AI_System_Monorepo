@@ -1,0 +1,25 @@
+{
+  "dev_workflow": {
+    "master_planner": ".cursor/dev-workflow/0-master-planner.md",
+    "master_planner_output": ".cursor/dev-workflow/0-master-planner-output.md",
+    "bootstrap": ".cursor/dev-workflow/0-bootstrap-your-project.md",
+    "create_prd": ".cursor/dev-workflow/1-create-prd.md",
+    "generate_tasks": ".cursor/dev-workflow/2-generate-tasks.md",
+    "process_tasks": ".cursor/dev-workflow/3-process-tasks.md",
+    "implementation_retro": ".cursor/dev-workflow/4-implementation-retrospective.md",
+    "background_agents": ".cursor/dev-workflow/5-background-agent-coordination.md",
+    "readme": ".cursor/dev-workflow/README.md"
+  },
+  "master_rules": {
+    "context_discovery": ".cursor/rules/master-rules/1-master-rule-context-discovery.mdc",
+    "collaboration": ".cursor/rules/master-rules/2-master-rule-ai-collaboration-guidelines.mdc",
+    "code_quality": ".cursor/rules/master-rules/3-master-rule-code-quality-checklist.mdc",
+    "mod_safety": ".cursor/rules/master-rules/4-master-rule-code-modification-safety-protocol.mdc",
+    "docs_integrity": ".cursor/rules/master-rules/5-master-rule-documentation-and-context-guidelines.mdc",
+    "complex_context": ".cursor/rules/master-rules/6-master-rule-complex-feature-context-preservation.mdc",
+    "router": ".cursor/rules/master-rules/7-dev-workflow-command-router.mdc",
+    "auditor_validator": ".cursor/rules/master-rules/8-auditor-validator-protocol.mdc",
+    "security_f8": ".cursor/rules/master-rules/F8-security-and-compliance-overlay.mdc"
+  }
+}
+

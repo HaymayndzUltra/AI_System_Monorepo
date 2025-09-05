@@ -1,0 +1,9 @@
+{
+  "accepted_tokens": ["go", "approve", "proceed", "tuloy", "sige", "ok", "okay", "oo"],
+  "case_insensitive": true,
+  "timeout_reminder": {
+    "after_turns": 1,
+    "message": "[AWAITING CONFIRMATION] Please reply with one of: go, approve, proceed, tuloy, sige, ok."
+  }
+}
+

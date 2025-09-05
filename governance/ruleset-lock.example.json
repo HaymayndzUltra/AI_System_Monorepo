@@ -1,0 +1,25 @@
+{
+  "commit": "HEAD",
+  "seed": 42,
+  "tz": "UTC",
+  "locale": "en",
+  "system_digest": "sha256:sys...",
+  "dev_digest": "sha256:dev...",
+  "input_fingerprint": {
+    "prompt_hash": "sha256:prompt...",
+    "path_aliases_hash": "sha256:aliases...",
+    "config_hash": "sha256:config..."
+  },
+  "selected_rules": [
+    {
+      "path": ".cursor/rules/master-rules/1-master-rule-context-discovery.mdc",
+      "sha256": "sha256:...",
+      "scope": "master"
+    }
+  ],
+  "overlays_applied": ["F8-security-and-compliance-overlay", "code-modification-safety", "docs-sync"],
+  "capabilities": ["context.load", "code.modify.safety", "docs.sync"],
+  "confidence_map": { "context.load": 0.91, "code.modify.safety": 0.83, "docs.sync": 0.80 },
+  "warnings": []
+}
+

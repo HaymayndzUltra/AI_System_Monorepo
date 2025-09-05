@@ -1,0 +1,30 @@
+confidence_threshold: 0.70
+precedence: [capability_first, domain_lifecycle, overlays]
+sort:
+  scope_priority: [master, common, project]
+  path_order: ascending
+overlays:
+  security_f8:
+    when_triggers: [security, compliance, threat, audit]
+    default_apply: true
+  modification_safety:
+    when_triggers: [modify, edit, change, update, implement, refactor]
+    default_apply: true
+  docs_sync:
+    when_triggers: [readme, documentation, docs, structure]
+    default_apply: true
+  audit_validate:
+    when_triggers: [audit, validate]
+    default_apply: true
+  ui_guidelines:
+    when_triggers: [tokens, AA, grid, aria, keyboard, perf, premium]
+    default_apply: conditional
+project_rules:
+  include_by_default: false
+  placeholders_optional: true
+path_aliases_file: /governance/path-aliases.json
+determinism:
+  temperature: 0
+  fixed_seed: 42
+  stable_sort: true
+

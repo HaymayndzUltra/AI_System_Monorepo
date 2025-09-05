@@ -4,6 +4,11 @@
 
 This workflow plan implements a capability-first router with Domain×Lifecycle disambiguation and policy overlays, unifying AI_1/AI_2/AI_3 approaches into a single, production-ready system. The plan covers all lifecycle phases from discovery through release, with comprehensive security, quality, and governance overlays.
 
+> Phase 0 Deliverables:
+> - RFC one-pager: `docs/AGGREGATE_2/phase-0/RFC-one-pager.md`
+> - Stakeholder sign-off: `docs/AGGREGATE_2/phase-0/Stakeholder-Signoff.md`
+> - Risk register: `docs/AGGREGATE_2/phase-0/Risk-Register.md`
+
 ## Scope & Objectives
 
 ### Primary Goals

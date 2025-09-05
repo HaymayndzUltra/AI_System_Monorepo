@@ -17,6 +17,41 @@ This workflow plan implements a capability-first router with Domain×Lifecycle d
 - Provide capability registry, backward-compat mapping, and baseline policy DSL
 - Ensure security (F8), modification safety, audit/validate, docs sync, UI AA/Perf, observability, and release compliance
 
+> Phase 1 Deliverables:
+> - Capability Registry: `docs/AGGREGATE_2/phase-1/Capability-Registry.yaml`
+> - Routing Log Schema: `docs/AGGREGATE_2/phase-1/Routing-Log-Schema.md`
+>
+> Phase 2 Deliverables:
+> - Dual Routing Parity Logs Spec: `docs/AGGREGATE_2/phase-2/Dual-Routing-Parity-Logs.md`
+>
+> Phase 3 Deliverables:
+> - Policy DSL: `docs/AGGREGATE_2/phase-3/Policy-DSL.yaml`
+> - CI Gates Config: `ci/gates_config.yaml`
+> - CI Wiring Guide: `docs/AGGREGATE_2/phase-3/CI-Wiring-Guide.md`
+>
+> Phase 4 Deliverables:
+> - UI Tokens: `docs/AGGREGATE_2/phase-4/UI-Tokens.json`
+> - AA/Perf Budgets: `docs/AGGREGATE_2/phase-4/AA-Perf-Budgets.md`
+>
+> Phase 5 Deliverables:
+> - Dev-Workflow Integration Mapping: `docs/AGGREGATE_2/phase-5/Dev-Workflow-Integration.md`
+>
+> Phase 6 Deliverables:
+> - Cutover & Rollback Plan: `docs/AGGREGATE_2/phase-6/Cutover-Plan.md`
+>
+> Phase 7 Deliverables:
+> - SLOs: `docs/AGGREGATE_2/phase-7/SLOs.md`
+> - Release Checklist: `docs/AGGREGATE_2/phase-7/Release-Checklist.md`
+>
+> Phase 8 Deliverables:
+> - Security Hardening Notes: `docs/AGGREGATE_2/phase-8/Security-Hardening.md`
+> - Incident Response Runbook: `docs/AGGREGATE_2/phase-8/Incident-Response-Runbook.md`
+>
+> Phase 9 Deliverables:
+> - Auditor Template: `docs/AGGREGATE_2/phase-9/Auditor-Template.md`
+> - Validator Template: `docs/AGGREGATE_2/phase-9/Validator-Template.md`
+> - Retrospective: `docs/AGGREGATE_2/phase-9/Implementation-Retrospective.md`
+
 ### Success Metrics
 - ≥95% correct routing with <5% clarify rate
 - 0 critical security issues merged

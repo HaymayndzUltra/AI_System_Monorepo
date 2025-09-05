@@ -1,0 +1,22 @@
+capabilities:
+  - id: context.load
+    rules:
+      - .cursor/rules/master-rules/1-master-rule-context-discovery.mdc
+  - id: collab.resolve
+    rules:
+      - .cursor/rules/master-rules/2-master-rule-ai-collaboration-guidelines.mdc
+  - id: code.modify.safety
+    rules:
+      - .cursor/rules/master-rules/4-master-rule-code-modification-safety-protocol.mdc
+  - id: docs.sync
+    rules:
+      - .cursor/rules/master-rules/5-master-rule-documentation-and-context-guidelines.mdc
+  - id: audit.run
+    rules:
+      - .cursor/rules/master-rules/8-auditor-validator-protocol.mdc
+  - id: validation.run
+    rules:
+      - .cursor/rules/master-rules/8-auditor-validator-protocol.mdc
+  - id: security.overlay
+    rules:
+      - .cursor/rules/master-rules/F8-security-and-compliance-overlay.mdc

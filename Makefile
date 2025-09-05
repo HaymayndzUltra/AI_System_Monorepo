@@ -12,3 +12,6 @@ router:
 
 demo:
 	./src/router.cjs "please analyze and apply security overlay with modify change"
+
+autoplan:
+	./scripts/autoplan.cjs $(BRIEF)

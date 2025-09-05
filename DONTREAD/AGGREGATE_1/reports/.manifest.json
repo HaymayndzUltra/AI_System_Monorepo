@@ -1,0 +1,27 @@
+[
+  {
+    "path": "/workspace/DONTREAD/AGGREGATE_1/docs/proposals/agent-readout-per-folder.md",
+    "bytes": 6746,
+    "sha256": "ca6f308a1630a9865e0ff31c13fa3b3adafd622880e8d5da40f37881b204d6e0"
+  },
+  {
+    "path": "/workspace/DONTREAD/AGGREGATE_1/docs/proposals/agent-consolidated-plan.md",
+    "bytes": 10279,
+    "sha256": "b20eaf0407585614855fb5bf6f194f0769c004539861654bcbd1f5b4237be7a7"
+  },
+  {
+    "path": "/workspace/DONTREAD/AGGREGATE_1/docs/proposals/agent-trigger-redesign.md",
+    "bytes": 5546,
+    "sha256": "856814751238c19643788dc480aced0b51e5460e2882b602bd26d289891ebc50"
+  },
+  {
+    "path": "/workspace/DONTREAD/AGGREGATE_1/docs/proposals/agent-phase-plan.md",
+    "bytes": 12270,
+    "sha256": "ed32e163c4267384aff5f7d05374816a33705f78aee6aeccd23bddd56f898240"
+  },
+  {
+    "path": "/workspace/DONTREAD/AGGREGATE_1/session-info.md",
+    "bytes": 566,
+    "sha256": "d9d96b8d3dd27a7a5e4a653bcfd6d56ccdad864883b4d7dd7fbb31bc8146d111"
+  }
+]

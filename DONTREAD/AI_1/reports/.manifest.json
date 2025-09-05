@@ -1,0 +1,87 @@
+[
+  {
+    "path": "/workspace/DONTREAD/AI_1/session-info.md",
+    "bytes": 243,
+    "sha256": "2f998490507db27fa8f49df35cd320eed9626d70f7eafd8f90c7ab55f30316ef"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/reports/routing-log.md",
+    "bytes": 1959,
+    "sha256": "9842936e7f9dc715f3a3ad8ed3a19477cba2d44bbd6da083a6c3a77dc7118c93"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/testing-strategy.md",
+    "bytes": 1212,
+    "sha256": "6a9dd11b5e19676c06270d403b69367fac556eff9d19c8c674508bc4d0e6a898"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/trigger-redesign.md",
+    "bytes": 2803,
+    "sha256": "b32f366cccfc1a50de757dc58561cf666e5e86fe4cf7c6e8d17b681e2c196a46"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/data-plan.md",
+    "bytes": 1465,
+    "sha256": "ee0dfdc9ebd743199401852a33b3a21d7972fac444fa9f3a31328bce78ef2e46"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/capability-map.md",
+    "bytes": 4239,
+    "sha256": "e95c11dfcb7eabe8dafaba0f42287bc5080b2e303fd40ea6179e5b760b0afc4f"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/fe-ux-plan.md",
+    "bytes": 1729,
+    "sha256": "49f6d6c44f06e3026f7ad5865ab3738332e0fafcdb48bc6a15fe6afcbe0defe3"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/milestones.md",
+    "bytes": 1480,
+    "sha256": "8d2b8305cc769c5e9f66a0297cedf55de38371c4b4a285fc3e09c86698bdde58"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/delivery-pipeline.md",
+    "bytes": 3433,
+    "sha256": "0de6802d853b4c481b57a6a183fb2d9b79fdc0161bfb1442952c2274933f1fba"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/strategy-C.md",
+    "bytes": 1595,
+    "sha256": "68312d4f11bc4c3db0a2639a9729e4ebb0c477e1e7be00129508ca94c7c75021"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/decision-matrix.md",
+    "bytes": 1890,
+    "sha256": "0e2f078629a9672fba82766ef5b7b9fc0c2db215f5364bb25f23726dc4ad431b"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/stack-options.md",
+    "bytes": 1835,
+    "sha256": "21c817d013d498b8580d4340caeecfdf4d270fc9e7b8499fd29165e6f1c1d10b"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/domain-architecture.md",
+    "bytes": 1763,
+    "sha256": "8a347547c591aaea110b07dbaec47e5de1139a76844374dd7ff4bbec12e5e428"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/strategy-B.md",
+    "bytes": 1150,
+    "sha256": "cf27364c1b017d4faf57ad2105ffa043f547ad4f22774767d2937674f7db4a2c"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/strategy-A.md",
+    "bytes": 1459,
+    "sha256": "2da44f8d6912f7aa487070ca0c4b11b52c91018bc9e704794229c24530ea91b9"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/observability-plan.md",
+    "bytes": 1329,
+    "sha256": "6b98f3aa00a0966cd41d3c4cf9a33bdf60de5817f75d8cf39c685940e81d5d59"
+  },
+  {
+    "path": "/workspace/DONTREAD/AI_1/docs/proposals/security-plan.md",
+    "bytes": 1481,
+    "sha256": "8799693014beb12a51344ff72996bbb14924da22ee37525c89d3fec4c6ec5138"
+  }
+]

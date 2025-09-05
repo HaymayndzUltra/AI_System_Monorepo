@@ -1,0 +1,45 @@
+Filename: docs/proposals/07-observability-release-gates.md
+### Title
+Observability-Driven Release Gates
+
+### Goals
+- Gate releases on SLOs and audit/validation artifacts.
+- Provide canary and rollback policies tied to telemetry.
+
+### Assumptions
+- Access to build metadata (commit SHA) and basic telemetry.
+
+### Capabilities
+- release.prepare, release.deploy, observe.metrics, observe.traces, observe.logs
+
+### Gate Logic (Pseudocode)
+```pseudo
+if !audit.validation.GO: block
+if error_budget_burn > threshold: block
+if coverage < min: warn/block per policy
+if canary_fail_rate > threshold: auto-rollback
+```
+
+### Backward-Compat
+- "release, deploy" map to release.* + observe.*
+
+### Trigger ↔ Rule(s) ↔ Files/Outputs
+| Capability | Rule(s) | Outputs |
+|---|---|---|
+| release.prepare | dev-workflow + F8 | release notes, changelog |
+| release.deploy | F8 + release policy | rollout plan, canary config |
+| observe.* | observability rules (future) | dashboards refs, SLO doc |
+
+### Risks
+- Telemetry gaps; provide manual override with sign-off.
+
+### Dependencies
+- CI integration for metrics; change log generator.
+
+### Success Metrics
+- <1% rollback after GA.
+- 100% releases have audit + validation artifacts.
+
+### Next Steps
+- Define SLO schema + thresholds.
+- Implement canary/rollback policy templates.

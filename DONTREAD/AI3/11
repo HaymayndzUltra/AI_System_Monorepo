@@ -1,0 +1,35 @@
+### Observability Plan (Metrics, Logs, Traces, SLO/SLA, Alerts)
+
+- Goal(s): Define SLIs/SLOs and telemetry with actionable alerts.
+
+### Assumptions
+- Centralized tracing and metrics backend.
+
+### Alternatives
+- Logs-only; limited insight.
+
+### Risks & Mitigations
+- Alert fatigue (M×M): SLO-based alerts; runbooks.
+
+### Dependencies
+- Tracing SDK, metrics exporter, log pipeline.
+
+### SLIs/SLOs
+- Availability %, p95 latency, error rate, saturation
+- Example SLO: API p95 < 300ms 99% of 28d
+
+### Telemetry
+- Correlation IDs; structured logs; trace percent sampling.
+
+### Trigger → Rule → File(s)/Output mapping
+
+| Trigger | Rules | Files/Outputs | Gates |
+|---|---|---|---|
+| observability | `F10-observability` | This plan | SLI dashboards exist |
+| security | `F8-security` | Audit logs spec | PII-safe logging |
+
+### Success Metrics
+- 100% critical services with SLOs; MTTR < 30m.
+
+### Next Steps
+- Create dashboards and alert policies; attach runbooks.

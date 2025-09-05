@@ -1,0 +1,54 @@
+<!-- File: docs/proposals/security-governance-overlay-router-g8.md -->
+
+### Security & Governance Overlay Router (G8)
+
+- **Goals**
+  - Enforce security/compliance overlays consistently across all routes.
+  - Gate "enterprise" features with RBAC/audit prerequisites.
+
+- **Assumptions**
+  - Sensitive flows identified via keywords/entities (PII/PHI/PCI).
+
+- **Alternatives**
+  - Inline security checks per rule (harder to maintain).
+
+- **Risks**
+  - Over-gating simple tasks; needs clear bypass criteria.
+
+- **Dependencies**
+  - `F8-security-and-compliance-overlay.mdc`, project `F8`.
+  - Auditor→Validator for governance (`8-auditor-validator-protocol.mdc`).
+
+### Router Logic
+- Detect security-relevant intents or sensitive data classifications.
+- Attach F8 overlay artifacts to any primary route.
+- If `enterprise=true`, require RBAC matrix + audit trail hooks before enabling enterprise UI.
+
+### Trigger ↔ Rule(s) ↔ Files/Outputs
+| Trigger | Rule(s) | Files/Outputs |
+|---|---|---|
+| security, audit, threat | F8 overlay + project F8 | threat model, SBOM, scans, evidence |
+| enterprise gating | Premium + F8 | RBAC matrix, audit logs, gated UI variants |
+| governance audit | Auditor→Validator | audit/validation reports |
+
+### Backward-Compat
+| Old Trigger | New Trigger(s) | Affected |
+|---|---|---|
+| security, audit | overlay:security | F8 (master+project) |
+| enterprise | capability:brand/premium + overlay:security | premium rule + RBAC/audit |
+
+### Migration Plan
+- Phase 1: Overlay in advisory mode.
+- Phase 2: Block on criticals; allow waivers with justification.
+- Phase 3: Policy-as-code in CI gates.
+
+### Examples
+- "Add OAuth with step-up auth" → any route + F8 overlay (authz, logs).
+- "Enable enterprise export" → premium gated + RBAC/audit, otherwise emit recommendation only.
+
+### Success Metrics
+- Zero plaintext secrets introduced.
+- 100% criticals blocked in CI.
+
+### Next Steps
+- Implement secret scanning, SBOM generation, audit templates.

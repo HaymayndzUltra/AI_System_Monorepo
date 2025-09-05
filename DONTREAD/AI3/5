@@ -1,0 +1,47 @@
+### Stack Options and Trade-offs
+
+- Goal(s): Provide three viable stacks per category with trade-offs.
+
+### Assumptions
+- Teams can mix-and-match per strategy.
+
+### Alternatives
+- Mandate single stack; reduces flexibility.
+
+### Risks & Mitigations
+- Fragmentation (M×M): Golden templates; shared libraries.
+
+### Dependencies
+- CI templates, build caches, artifact registry.
+
+### Options
+
+- Frontend:
+  - Next.js (SSR/ISR, strong ecosystem)
+  - React Vite SPA (fast dev, simple deploy)
+  - SvelteKit (great perf, smaller ecosystem)
+- Backend:
+  - Node/Express (simple), NestJS (opinionated), Go/Fiber (perf)
+- Data:
+  - Postgres (relational), DynamoDB (serverless), MongoDB (doc)
+- Messaging:
+  - Kafka (event backbone), SQS/Queue (simpler), NATS (lightweight)
+- CI/CD:
+  - GitHub Actions, GitLab CI, CircleCI
+- Testing:
+  - Vitest/Jest, Playwright/Cypress, Pact for contracts
+- Auth:
+  - OAuth/OIDC (Auth0/Cognito), Keycloak, DIY (not recommended)
+
+### Trigger → Rule → File(s)/Output mapping
+
+| Trigger | Rules | Files/Outputs | Gates |
+|---|---|---|---|
+| planning | `F2-planning` | This document | Architecture approval |
+| security | `F8-security` | `security-plan.md` | Threat model per stack |
+
+### Success Metrics
+- Selected stack achieves ≥80 in decision matrix.
+
+### Next Steps
+- Score stacks per `decision-matrix.md`; finalize choice.

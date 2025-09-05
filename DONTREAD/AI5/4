@@ -1,0 +1,47 @@
+Filename: docs/proposals/05-security-compliance-overlay-integration.md
+### Title
+Security & Compliance Overlay Integration (F8 First-Class)
+
+### Goals
+- Make F8 overlay first-class in routing; always-on with scoped intensities.
+- Provide explicit STRIDE-lite hooks and artifact outputs.
+
+### Assumptions
+- F8 is alwaysApply in master rules.
+
+### Integration Points
+- Pre-routing: add security.overlay capability by default.
+- Risk-aware intensities: low/med/high adjust checklists (e.g., SCA required for med+).
+
+### Threat Modeling Snippet (Template)
+```markdown
+[THREAT MODEL]
+Assets: {assets}
+Entry points: {endpoints}
+Trust boundaries: {boundaries}
+Mitigations: {bullets}
+```
+
+### Backward-Compat
+- Old "security/compliance/audit" triggers map to security.overlay + security.audit.
+
+### Trigger ↔ Rule(s) ↔ Files/Outputs
+| Capability | Rule(s) | Outputs |
+|---|---|---|
+| security.overlay | F8-security-and-compliance-overlay | Security checklist, STRIDE notes |
+| security.audit | F8 + 8-auditor-validator-protocol | Audit report, validation plan |
+
+### Risks
+- Over-enforcement; allow policy exceptions with tracking.
+
+### Dependencies
+- Risk scorer (heuristic).
+- SCA/DAST integration points.
+
+### Success Metrics
+- 0 plaintext secrets introduced.
+- 100% high-risk tasks have audit artifacts.
+
+### Next Steps
+- Embed risk level detection.
+- Add exception workflow and audit log.

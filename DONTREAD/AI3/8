@@ -1,0 +1,35 @@
+### Data Plan (Schemas, Migrations, Privacy/Retention)
+
+- Goal(s): Define data modeling, migration, privacy classification, retention.
+
+### Assumptions
+- PII is present; regional constraints possible.
+
+### Alternatives
+- Ad-hoc migrations; no DPIA (non-compliant).
+
+### Risks & Mitigations
+- Data loss (L×H): Backups, migration dry-runs.
+- Privacy breach (L×H): Data minimization; access controls.
+
+### Dependencies
+- Schema tooling, migration system, DPIA templates.
+
+### Schemas & Migrations
+- Versioned schemas; up/down migrations; blue/green or expand-contract.
+
+### Privacy & Retention
+- Classify PII/PHI; retention by category; deletion workflows; DSR handling.
+
+### Trigger → Rule → File(s)/Output mapping
+
+| Trigger | Rules | Files/Outputs | Gates |
+|---|---|---|---|
+| data schema | `F5-data-ml` | This plan + schema repo | Migration plan reviewed |
+| security | `F8-security` | `security-plan.md` | Access controls validated |
+
+### Success Metrics
+- Zero prod data-loss incidents; >95% access compliance.
+
+### Next Steps
+- Author initial ERD; define retention matrix and DSR SOP.

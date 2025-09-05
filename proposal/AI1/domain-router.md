@@ -1,0 +1,74 @@
+<!-- File: docs/proposals/domain-router.md -->
+
+### Domain-First Trigger Router (D1)
+
+- **Goals**
+  - Route by product domain first (UI, Mobile, Backend/API, Data/ML, CLI/Desktop, Infra/IaC).
+  - Ensure domain-appropriate rules and outputs even with vague intents.
+
+- **Assumptions**
+  - Workspace scope is discoverable via repo structure.
+  - Domain detection heuristics reliable (paths, dependencies).
+
+- **Alternatives**
+  - Capability-first (C1) or hybrid scoring (H3).
+
+- **Risks**
+  - Mixed-domain monorepos; false positives.
+  - Domain-specific jargon missing from messages.
+
+- **Dependencies**
+  - Context Discovery rule for README and structure.
+  - Rule metadata SCOPE alignment.
+
+### New Taxonomy (Domains)
+- **UI/Web** (React/Vue/Svelte/HTML/CSS)
+- **Mobile** (iOS/Android/Flutter/ReactNative)
+- **Backend/API** (REST/GraphQL/RPC)
+- **Data/ML** (ETL, modeling, notebooks)
+- **CLI/Desktop** (Rust/Go/Electron/.NET)
+- **Infra/IaC** (Terraform, K8s, Docker)
+
+### Router Logic (D1)
+- Detect domain via workspace scan + message keywords.
+- Apply domain defaults; then attach secondary capability rules if any intent is found.
+- Always include Collaboration + Security overlays when applicable.
+
+### Trigger ↔ Rule(s) ↔ Files/Outputs
+| Domain | Rules | Outputs |
+|---|---|---|
+| UI/Web | UI Foundation / Interaction / Premium (as needed), 3,5 | Tokens, interaction specs, AA checks |
+| Mobile | 3,4,5, F8 | Platform a11y, perf targets, mod-safety |
+| Backend/API | 3,4,6, F8 | API contract checks, impact analysis |
+| Data/ML | 3,5, F8 | Data privacy, model cards, docs sync |
+| CLI/Desktop | 3,4, F8 | UX ergonomics, safe mods, security |
+| Infra/IaC | 3,4, F8 | IaC safety checks, secrets policy |
+
+### Backward-Compat (Old → Domain)
+| Old Trigger | Domain | Notes |
+|---|---|---|
+| foundation, tokens, interaction | UI/Web | Attach capability for precision |
+| modify, refactor | Any | Domain resolved via repo scan |
+| release, deploy | Infra/IaC or Backend | Attach F9 + Auditor/Validator |
+| security, audit | All | F8 overlay applies |
+
+### Example Messages → Resolution
+- "Improve CLS in product page" → UI/Web → UI Interaction + 3
+- "Add canary deploy" → Infra/IaC → F9 + F8
+- "Document ETL SLOs" → Data/ML → F10
+
+### Migration Plan
+- Introduce domain detector with confidence scoring.
+- Mirror alongside legacy; track deltas.
+- Domain-first → attach capability fallback.
+- Deprecate legacy routing after stability.
+
+### Success Metrics
+- Domain detection accuracy ≥ 97%.
+- Reduction in mis-applied UI rules in backend repos by 90%.
+- Lower mean route latency with domain defaults cached.
+
+### Next Steps
+- Implement domain heuristics (deps/paths).
+- Author domain→default-rules matrix.
+- Observability for route decisions.

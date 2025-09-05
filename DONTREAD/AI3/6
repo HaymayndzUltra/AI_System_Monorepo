@@ -1,0 +1,41 @@
+### Domain Architecture, Modules, Contracts, Versioning
+
+- Goal(s): Define module boundaries, API/contract patterns, versioning policies.
+
+### Assumptions
+- Single source of truth for contracts; versioned independently.
+
+### Alternatives
+- Big-ball-of-mud API; no versioning.
+
+### Risks & Mitigations
+- Breaking changes (M×H): Semantic versioning + contract tests.
+- Orphan dependencies (M×M): Ownership map, codeowners.
+
+### Dependencies
+- Schema registry (if events), OpenAPI repo, package registry.
+
+### Modules (example)
+- `identity`, `billing`, `catalog`, `orders`, `analytics`
+
+### Contracts
+- REST: OpenAPI, error envelope policy
+- Events: Avro/JSON schema with compatibility rules
+- Libraries: Semver, changelog required
+
+### Versioning Policy
+- REST: vN path; deprecate with 2-release window
+- Events: Backward compatible by default; soft-deprecate fields
+
+### Trigger → Rule → File(s)/Output mapping
+
+| Trigger | Rules | Files/Outputs | Gates |
+|---|---|---|---|
+| architecture | `F4-architecture` | This document + ADRs | Contract lint + compat check |
+| testing | `F7-qa` | `testing-strategy.md` | Contract tests required |
+
+### Success Metrics
+- Zero breaking changes shipped without deprecation window.
+
+### Next Steps
+- Create initial OpenAPI and event schemas; set compat checks in CI.

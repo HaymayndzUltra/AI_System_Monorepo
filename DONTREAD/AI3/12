@@ -1,0 +1,38 @@
+### Milestones, Estimates, Dependencies
+
+- Goal(s): Phase delivery with dependencies and acceptance gates.
+
+### Assumptions
+- 2-week sprints; capacity known.
+
+### Alternatives
+- Big-bang delivery (risk).
+
+### Risks & Mitigations
+- Underestimation (M×M): Buffer; scope cuts.
+
+### Dependencies
+- Hiring, vendor tools, approvals.
+
+### Milestones (example)
+- M1: Discovery/PRD approved (2w)
+- M2: Architecture & FE tokens (2w)
+- M3: MVP backend + data schema (3w)
+- M4: E2E + security hardening (2w)
+- M5: Observability + release (1w)
+
+### Acceptance Gates
+- Each milestone must pass relevant capability gates.
+
+### Trigger → Rule → File(s)/Output mapping
+
+| Trigger | Rules | Files/Outputs | Gates |
+|---|---|---|---|
+| planning | `F2-planning` | This document | Capacity, risks present |
+| release | `F9-release` | Release notes | Change control |
+
+### Success Metrics
+- On-time delivery ±10%; scope variance ≤15%.
+
+### Next Steps
+- Baseline estimates with team; finalize dependencies.

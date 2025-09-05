@@ -1,0 +1,66 @@
+### Trigger Taxonomy Redesign (Capability-based)
+
+- Goal(s): Normalize triggers to capabilities; enable predictable rule routing.
+
+### Assumptions
+- Backward-compat routing required for existing prompts.
+
+### Alternatives
+- Keep legacy mixed triggers (higher ambiguity). We choose capability-based.
+
+### Risks & Mitigations
+- Migration confusion (M×M): Clear mapping table + deprecation window.
+- Overbroad triggers (M×M): Prefix scoping (e.g., `ui:a11y`).
+
+### Dependencies
+- `.cursor/dev-workflow/*`, rule metadata updates in future PRs.
+
+### New Trigger Taxonomy
+- discovery, prd
+- planning, tasks
+- architecture, adr, contract
+- implement, refactor
+- ui:foundation, ui:tokens, ui:a11y, ui:perf
+- data:schema, data:pipeline
+- security:threat, security:compliance, security:rbac
+- testing:unit, testing:integration, testing:contract, testing:e2e
+- observability:metrics, observability:traces, observability:alerts
+- release:deploy, release:rollback
+
+### Backward-Compat Mapping
+
+| Old Trigger | New Trigger(s) | Impacted Rules/Files |
+|---|---|---|
+| foundation, design tokens, AA | ui:foundation, ui:tokens, ui:a11y | FE UX plan, UI rules |
+| interaction, a11y, LCP/INP/CLS | ui:a11y, ui:perf | FE UX plan, perf gates |
+| premium, enterprise, RBAC, audit | security:rbac, ui:brand | Security plan, UI gated features |
+| prd discovery | discovery, prd | F1-discovery |
+| planning | planning | F2-planning |
+| architecture, adr, contract | architecture, adr, contract | F4-architecture |
+| implement | implement | F6-implementation |
+| tests | testing:* | F7-qa |
+| observability, retro | observability:* | F10-observability |
+| release, deploy | release:deploy | F9-release |
+
+### Trigger → Rule → File(s)/Output mapping
+
+| Trigger(s) | Rules | Files/Outputs | Gates |
+|---|---|---|---|
+| ui:* | `common-ui-*` | `fe-ux-plan.md` | A11y/perf |
+| security:* | `F8-security`, `F8 overlay` | `security-plan.md` | SAST/DAST/SBOM |
+| testing:* | `F7-qa` | `testing-strategy.md` | Coverage/contract |
+| release:* | `F9-release` | `delivery-pipeline.md` | Approvals/rollback |
+
+### Migration Plan
+- Phase 1 (2 weeks): Dual-route triggers; docs updated.
+- Phase 2 (2 weeks): Deprecate old triggers; lint prompts.
+- Phase 3: Remove old triggers; audit for stragglers.
+
+### Fallback
+- If adoption < 80% by Phase 2, extend dual-route and run targeted trainings.
+
+### Success Metrics
+- 0 failed routings in CI; 100% docs use new taxonomy.
+
+### Next Steps
+- Socialize mapping; update internal prompt libraries.

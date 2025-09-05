@@ -1,0 +1,52 @@
+<!-- File: docs/proposals/testing-observability-router-qo.md -->
+
+### Testing & Observability Router (QO)
+
+- **Goals**
+  - Ensure every route integrates QA strategy and telemetry early.
+  - Align perf targets with `INP`, `LCP`, error budgets, and SLOs.
+
+- **Assumptions**
+  - CI available; logging/metrics backends defined.
+
+- **Alternatives**
+  - Attach QA/Observability ad-hoc (inconsistent).
+
+- **Risks**
+  - Overhead for tiny tasks; use thresholds to skip.
+
+- **Dependencies**
+  - `F7-qa`, `F10-observability`, `3-code-quality`, `5-docs`.
+
+### Router Logic
+- For any capability/domain, attach QO artifacts based on change risk.
+- Provide test strategy template and observability checklist.
+
+### Trigger ↔ Rule(s) ↔ Files/Outputs
+| Trigger | Rule(s) | Files/Outputs |
+|---|---|---|
+| qa, test strategy | `F7`, `3` | strategy doc, coverage/thresholds |
+| observability, SLO | `F10` | logs/metrics/traces, dashboards, SLOs |
+| perf targets | UI Interaction + `F10` | perf checklist, budgets |
+
+### Backward-Compat
+| Old Trigger | New Trigger(s) | Affected |
+|---|---|---|
+| qa, testing | overlay:qa | F7/CI |
+| observability, retro | overlay:observability | F10/SLO |
+
+### Migration Plan
+- Start with templates in PRs.
+- Enforce for medium/high risk changes.
+- CI checks for presence of artifacts.
+
+### Examples
+- "Improve INP for form submit" → interaction + QO perf targets + traces.
+- "Add data pipeline step" → data/ml + QO metrics/tracing + test plan.
+
+### Success Metrics
+- Test coverage trend up; flakes < 2%.
+- SLO violations trend down.
+
+### Next Steps
+- Add CI actions for QO artifacts presence.

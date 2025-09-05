@@ -1,0 +1,52 @@
+<!-- File: docs/proposals/stack-profile-router-spro.md -->
+
+### Stack-Profile Based Router (S-Pro)
+
+- **Goals**
+  - Detect stack from dependencies/configs and attach stack-specific rule bundles.
+  - Reduce false positives in polyglot monorepos.
+
+- **Assumptions**
+  - Signals: `package.json`, `go.mod`, `pom.xml`, `pyproject.toml`, `Dockerfile`, `openapi.yaml`, `terraform`.
+
+- **Alternatives**
+  - Manual per-repo configuration.
+
+- **Risks**
+  - Edge stacks mis-detected; allow manual override.
+
+- **Dependencies**
+  - Context Discovery rule; stack profiler library.
+
+### Router Logic
+- Build stack profile (frameworks, languages, infra).
+- Map to default rules for UI, backend/API, data/ML, infra/IaC, mobile, CLI/desktop.
+
+### Trigger ↔ Rule(s) ↔ Files/Outputs
+| Stack Profile | Default Rules | Outputs |
+|---|---|---|
+| React/Web | UI Foundation/Interaction/Premium, `F3` | tokens, a11y, perf |
+| Node API | `F4`, `F9`, `F8`, `F7` | ADRs, OpenAPI, release, tests |
+| Data/ML | `F5`, `F10`, `F8` | schema, lineage, SLOs |
+| Infra/Terraform | `F9`, `F8`, Mod Safety | rollout, policy checks |
+
+### Backward-Compat
+| Old Trigger | New Trigger(s) | Affected |
+|---|---|---|
+| foundation | stack:web + capability:foundation | UI rules |
+| deploy | stack:infra/backend + capability:release | F9 |
+
+### Migration Plan
+- Generate stack profiles at CI; compare routing deltas.
+- Enable per-directory; add override file (e.g., `.routerrc`).
+
+### Examples
+- "Add keyboard nav" in React app → stack:web → attach UI interaction.
+- "Add S3 bucket via Terraform" → stack:infra → F9 + F8.
+
+### Success Metrics
+- Stack mis-detection < 1%.
+- Reduced manual overrides by 50%.
+
+### Next Steps
+- Implement detectors; add profile cache.

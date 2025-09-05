@@ -1,0 +1,53 @@
+Filename: docs/proposals/08-multi-stack-adapters.md
+### Title
+Multi-Stack Adapters & SDK
+
+### Goals
+- First-class support across stacks with adapter interfaces.
+- Decouple router from framework specifics.
+
+### Assumptions
+- Adapter registry can be extended without core changes.
+
+### Adapter Interface (Type Sketch)
+```ts
+interface RouterAdapter {
+  id: string
+  match(projectFiles: string[], repoMeta: object): boolean
+  capabilities(): string[]
+  mapToRules(capability: string): string[] // returns rule IDs
+  outputs(capability: string): { files: string[], reports: string[] }
+}
+```
+
+### Example Adapters
+- React/Vue/Svelte (ui.foundation, ui.interaction)
+- Node/Express/Nest (code.modify.safety, audit.run)
+- Python/FastAPI/Django (code.modify.safety, test.integration)
+- Go/Gin (code.modify.safety)
+- Terraform/K8s (infra.iac, release.deploy)
+- Data/ML (data.pipeline, ml.train)
+
+### Backward-Compat
+- When no adapter matches, fall back to generic mapping tables.
+
+### Trigger ↔ Rule(s) ↔ Files/Outputs
+| Adapter | Capability | Rule(s) | Outputs |
+|---|---|---|---|
+| React | ui.foundation | UI foundation rule | tokens.json, styles.ts |
+| Node | code.modify.safety | 4-master-rule-code-modification-safety-protocol | plan.md, diff checklist |
+| Terraform | infra.iac | F8 + IaC checks | tfplan artifacts |
+
+### Risks
+- Adapter drift; add conformance tests.
+
+### Dependencies
+- Adapter registry and validation suite.
+
+### Success Metrics
+- 95% of repos matched to a primary adapter.
+- <5% manual overrides across 4 weeks.
+
+### Next Steps
+- Ship 3 seed adapters (web, backend, infra).
+- Document adapter authoring guide.

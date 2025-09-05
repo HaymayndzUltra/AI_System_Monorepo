@@ -1,0 +1,59 @@
+### Delivery Pipeline (Dev → Staging → Prod)
+
+- Goal(s): Define environment flow, policy gates, secrets, rollback, and parallel session policies aligned to rules.
+
+### Assumptions
+- CI/CD supports environment-specific secrets and approvals.
+- Artifacts are immutable and promoted across stages.
+
+### Alternatives
+- Single-env deploy (fast, risky) vs. canary/blue-green (safer, costlier). Choose staged with optional canary.
+
+### Risks and Mitigations
+- Secret leakage (L×H): Use manager; scan for secrets; short-lived tokens.
+- Rollback drift (M×M): Declarative infra, versioned DB migrations with down-path.
+- Gate fatigue (M×M): Severity-based gating; auto-waive for low-risk trivial changes.
+
+### Dependencies
+- Secret manager (e.g., Vault/SM/KMS), container registry, IaC, test infra, monitoring.
+
+### Pipeline
+
+- Dev:
+  - Triggers: planning, implement, tests
+  - MUST Gates: SAST, unit tests, lint/typecheck, SBOM
+  - Artifacts: build + SBOM
+- Staging:
+  - Triggers: e2e, contract, observability
+  - MUST Gates: DAST, integration/e2e, contract tests, perf smoke, migration dry-run
+  - Approvals: 1 peer + product
+- Prod:
+  - Triggers: release, deploy
+  - MUST Gates: Change ticket link, SLO verification, canary health, error budget check
+  - Rollback: Automated to previous artifact; DB rollback plan required
+
+### Parallel Sessions Policy
+- Use background agents per `.cursor/dev-workflow/5-background-agent-coordination.md`.
+- Isolation: one parent task per session; merge via PR with gates.
+- Conflict resolution: collaboration guidelines rule.
+
+### Trigger → Rule → File(s)/Output mapping
+
+| Stage | Triggers | Rules | Files/Outputs | Gates |
+|---|---|---|---|---|
+| Dev | implement, tests | `F6-implementation`, `3-code-quality-checklist` | PR + build | SAST, unit, SBOM |
+| Staging | contract, e2e, observability | `F7-qa`, `F10-observability` | Release candidate | DAST, e2e, SLI checks |
+| Prod | release, deploy | `F9-release`, `F8-security` | Deployment record | Approvals, rollback-ready |
+
+### Secrets
+- MUST: No plaintext; inject via CI; per-env scopes; rotation policy.
+
+### Rollback
+- Versioned artifacts; one-click revert; DB reversible migrations or hotfix forward-only plan.
+
+### Success Metrics
+- p95 lead time from PR merge to prod < 2h.
+- Change failure rate < 10%; MTTR < 30m with automated rollback.
+
+### Next Steps
+- Implement CI jobs per gates; connect secret manager; define canary thresholds.

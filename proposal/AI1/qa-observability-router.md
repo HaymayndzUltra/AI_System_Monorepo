@@ -1,0 +1,49 @@
+<!-- File: docs/proposals/qa-observability-router.md -->
+
+### QA + Observability Orchestrator (QO1)
+
+- **Goals**
+  - Auto-attach QA (F7) and Observability (F10) to relevant intents.
+  - Enforce test strategy + telemetry/SLOs early.
+
+- **Assumptions**
+  - CI present with coverage reports.
+  - Logging/tracing libraries available.
+
+- **Alternatives**
+  - Handle via Dev-Workflow only (less granular).
+
+- **Risks**
+  - Noise from over-eager checklists; mitigate by capability/domain scoping.
+
+- **Dependencies**
+  - Coverage tools; tracing infra.
+
+### Routing Logic
+- If intent includes qa/test/coverage → F7.
+- If intent includes observability/metrics/tracing/retro → F10.
+- On Code.Modify with >N files or critical paths → attach F7 + F10 automatically.
+
+### Trigger ↔ Rule(s) ↔ Files/Outputs
+| Condition | Rules | Outputs |
+|---|---|---|
+| qa, test strategy | F7 | Test plan, coverage thresholds |
+| observability | F10 | Telemetry plan, SLOs, dashboards |
+| complex refactor | 4 + 6 + F7 | Impact analysis + non-regression plan |
+
+### Example Messages → Resolution
+- "Create test plan for payments" → F7.
+- "Add request tracing and SLOs" → F10.
+
+### Migration Plan
+- Mirror-on in modify+release flows.
+- Require QA/Obs sections in proposals/PR templates.
+
+### Success Metrics
+- Coverage meets thresholds per module.
+- SLOs defined and tracked for all critical services.
+- Flake rate < 2%; alert noise reduced QoQ.
+
+### Next Steps
+- Add PR template checks.
+- Hook CI to block on missing QA/Obs artifacts.

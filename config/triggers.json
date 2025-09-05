@@ -1,0 +1,13 @@
+{
+  "context": ["rule", "context", "analyze"],
+  "collab": ["conflict", "clarify", "proceed", "how to"],
+  "quality": ["code", "refactor", "quality"],
+  "modify": ["modify", "edit", "change", "update", "implement"],
+  "docs": ["readme", "documentation", "docs"],
+  "audit": ["audit"],
+  "validate": ["validate"],
+  "security": ["security", "compliance", "threat"],
+  "ui_foundation": ["foundation", "tokens", "AA"],
+  "ui_interaction": ["interaction", "aria", "keyboard", "perf"],
+  "ui_premium": ["premium", "brand", "RBAC"]
+}

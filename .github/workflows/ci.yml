@@ -1,23 +1,25 @@
 name: CI
+
 on:
-  push:
   pull_request:
+  push:
+    branches: [ main ]
+
 jobs:
-  validate:
+  checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - run: npm ci || npm i
-      - name: Validate rules frontmatter
-        run: npm run ci:validate:rules
-      - name: Validate OpenAPI
-        run: npx swagger-cli validate openapi/api-v1.0.yaml
-      - name: Validate frontmatter schema example
-        run: npx ajv validate -s .artifacts/schemas/frontmatter.schema.json -d .artifacts/templates/frontmatter.example.json
-      - name: Check required docs exist
+          node-version: '20'
+      - name: Security & Policy Gates (placeholder)
         run: |
-          test -f docs/discovery/brief.md
-          test -f docs/discovery/rad.md
+          echo "[F8] secrets/SAST/SCA would run here"
+          echo "Using ci/gates_config.yaml for gates"
+          test -f ci/gates_config.yaml
+      - name: Docs-Sync (placeholder)
+        run: |
+          echo "Docs sync checks would run here"

@@ -1,0 +1,18 @@
+[CONTEXT]
+- Snapshot: HEAD
+- Layunin: Maglabas ng proposals/plan na applicable sa kahit anong uri ng project (web, mobile, backend/API, data/ML, CLI/desktop, infra), naka-align sa umiiral na rules at trigger commands.
+- Guardrails (MUST):
+  - Huwag mag-edit ng repo; REPORTS/PROPOSALS lang ang ilalabas.
+  - Ilista lahat ng assumptions, alternatives, risks, dependencies.
+  - Tukuyin ang exact na deliverables at file paths (kahit hypothetical).
+- Output folder suggestion: docs/proposals/
+- I-refer ang rules/protocols:
+  - /workspace/.cursor/rules/master-rules
+  - /workspace/.cursor/rules/common-rules
+  - /workspace/.cursor/dev-workflow
+- Allowed: Propose a new trigger taxonomy/router logic (end-to-end).
+- MUST kung magre-redesign ng triggers:
+  - Panatilihin ang [STRICT]/MUST vs [GUIDELINE] semantics.
+  - Magbigay ng backward-compat mapping (old → new) at migration plan.
+  - Buong trigger→rule map at example messages (how to trigger).
+  - REPORTS only; no code edits.

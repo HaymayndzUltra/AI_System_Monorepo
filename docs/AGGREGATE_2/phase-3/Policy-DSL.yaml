@@ -6,6 +6,7 @@ policies:
       - criticals_block: true
       - secrets_in_repo: block
       - sbom_on_release: true
+      - threat_model: required
   - id: mod_safety
     when: modifies_code | refactor | schema_change
     rule: .cursor/rules/master-rules/4-master-rule-code-modification-safety-protocol.mdc
@@ -31,5 +32,14 @@ policies:
     gates:
       - aa_contrast: pass
       - perf:
-          INP_p75: "<=200ms"
+          INP_p75: "<200ms"
           LCP_p75: "<=2.5s"
+          CLS: "<=0.1"
+  - id: observability
+    when: domain in [backend,ui]
+    rules:
+      - .cursor/rules/project-rules/F10-observability.mdc
+    gates:
+      - slos_defined: required
+      - logs_schema: required
+      - traces_sampling: required

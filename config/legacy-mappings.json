@@ -1,0 +1,15 @@
+{
+  "rule, context, analyze": "context.load",
+  "conflict, clarify, proceed, how to": "collab.resolve",
+  "code, develop, refactor, implement, fix, quality": "code.quality",
+  "modify, edit, change, update, implement": "code.modify.safety",
+  "readme, documentation, structure, docs": "docs.sync",
+  "complex, feature, algorithm, api-integration": "complex.context",
+  "bootstrap, plan, taskgen, execute, retro": "workflow.plan",
+  "audit": "audit.run",
+  "validate": "validation.run",
+  "security, compliance, threat, audit": "security.overlay",
+  "foundation, tokens, AA": "ui.foundation",
+  "interaction, aria, keyboard, perf": "ui.interaction",
+  "premium, brand, RBAC": "ui.premium"
+}
